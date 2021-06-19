@@ -1,5 +1,11 @@
 package net.ibxnjadev.kruby.abstraction.template;
 
-public interface Template {
+import net.ibxnjadev.kruby.abstraction.util.Identifiable;
+
+public interface Template extends Identifiable {
+
+    String getName();
+
+
 
 }
