@@ -22,6 +22,16 @@ public interface CloudService {
     Server createServer(Template template, int port);
 
     /**
+     * Create a minecraft server based on a template
+     * @param template the template that will be used to create the server
+     * @return The created server
+     */
+
+    default Server createServer(Template template) {
+        return createServer(template, -1);
+    }
+
+    /**
      * Delete a server
      * @param serverId The id of the server you want to delete
      */
