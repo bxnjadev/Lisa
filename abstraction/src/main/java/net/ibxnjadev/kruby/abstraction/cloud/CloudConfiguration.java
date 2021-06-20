@@ -1,0 +1,9 @@
+package net.ibxnjadev.kruby.abstraction.cloud;
+
+import net.ibxnjadev.kruby.abstraction.util.Identifiable;
+
+public interface CloudConfiguration extends Identifiable {
+
+    String getName();
+
+}
