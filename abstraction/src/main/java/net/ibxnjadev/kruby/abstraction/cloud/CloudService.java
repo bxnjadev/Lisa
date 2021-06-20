@@ -5,6 +5,7 @@ import net.ibxnjadev.kruby.abstraction.template.Template;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This class manages all functions of the cloud
@@ -59,6 +60,11 @@ public interface CloudService {
      * @return all servers that belong to the template
      */
 
-    Set<Server> getAllServerInTemplate(String templateName);
+    default Set<Server> getAllServerInTemplate(String templateName) {
+        return getAllServers()
+                .stream()
+                .filter(server -> server.getTemplateName().equals(templateName))
+                .collect(Collectors.toSet());
+    }
 
 }
