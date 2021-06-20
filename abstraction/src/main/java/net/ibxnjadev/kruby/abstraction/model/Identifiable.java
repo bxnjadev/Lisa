@@ -1,4 +1,4 @@
-package net.ibxnjadev.kruby.abstraction.util;
+package net.ibxnjadev.kruby.abstraction.model;
 
 public interface Identifiable {
 
