@@ -6,4 +6,8 @@ public interface CloudConfiguration extends Identifiable {
 
     String getName();
 
+    String getAddress();
+
+    RemoteCloudConfiguration getRemoteCloudConfiguration();
+
 }
