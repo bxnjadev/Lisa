@@ -14,6 +14,8 @@ public interface Template extends Identifiable {
 
     void updatePathJar(String pathJar);
 
+    int getQuantityServersCreatePerDefect();
+
     JavaVersion getJavaVersion();
 
 }
