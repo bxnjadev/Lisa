@@ -9,4 +9,8 @@ public interface Template extends Identifiable {
 
     ServerType getType();
 
+    String getPathJar();
+
+
+
 }
