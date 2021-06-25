@@ -1,7 +1,6 @@
 package net.ibxnjadev.kruby.core.redis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ibxnjadev.kruby.abstraction.model.Identifiable;
 import net.ibxnjadev.kruby.abstraction.redis.RedisCacheProvider;
 import net.ibxnjadev.kruby.abstraction.util.Cache;
 import net.ibxnjadev.kruby.abstraction.util.ClientProvider;
@@ -12,7 +11,7 @@ import java.util.Map;
 
 public class CoreRedisCacheProvider implements RedisCacheProvider {
 
-    private final Map<Class<?>, Cache<?, ?>> maps = new HashMap<>();
+    private final Map<Class<?>, Cache<String, ?>> maps = new HashMap<>();
 
     private final ObjectMapper mapper;
     private final ClientProvider<JedisPool> clientProvider;
@@ -23,12 +22,12 @@ public class CoreRedisCacheProvider implements RedisCacheProvider {
     }
 
     @Override
-    public <K extends Identifiable, V> Cache<K, V> findCache(String cacheName, Class<V> clazz) {
+    public <V> Cache<String, V> findCache(String cacheName, Class<V> clazz) {
 
         if (!maps.containsKey(clazz)) {
-            maps.put(clazz, new RedisCache<>(cacheName, clazz, mapper, clientProvider.getClient()));
+            maps.put(clazz, new RedisCache<>(cacheName, clazz, mapper, clientProvider));
         }
 
-        return null;
+        return (Cache<String, V>) maps.get(clazz);
     }
 }
