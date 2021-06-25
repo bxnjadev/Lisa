@@ -28,6 +28,11 @@
             <artifactId>jedis</artifactId>
             <version>3.6.1</version>
         </dependency>
+        <dependency>
+            <groupId>net.ibxnjadev.kruby.abstraction</groupId>
+            <artifactId>kruby-abstraction</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
 </project>
