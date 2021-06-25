@@ -15,20 +15,20 @@ public class RedisCache<String, V> implements Cache<String, V> {
 
     private final Class<V> clazz;
     private final ObjectMapper mapper;
-    private final String cacheName;
+    private final String className;
     private final JedisPool jedisPool;
 
-    public RedisCache(String cacheName, Class<V> clazz, ObjectMapper mapper, ClientProvider<JedisPool> clientProvider) {
-        this.cacheName = cacheName;
+    public RedisCache(Class<V> clazz, ObjectMapper mapper, ClientProvider<JedisPool> clientProvider) {
         this.clazz = clazz;
         this.mapper = mapper;
+        className = (String) clazz.getName().toLowerCase();
         jedisPool = clientProvider.getClient();
     }
 
     @Override
     public void add(String key, V value) {
         try (Jedis jedis = jedisPool.getResource()) {
-            jedis.set(cacheName + ":" + key, mapper.writeValueAsString(value));
+            jedis.set(className + ":" + key, mapper.writeValueAsString(value));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class RedisCache<String, V> implements Cache<String, V> {
     public Optional<V> find(String key) {
         try (Jedis jedis = jedisPool.getResource()) {
             try {
-                return Optional.ofNullable(mapper.readValue(jedis.get(cacheName + ":" + key), clazz));
+                return Optional.ofNullable(mapper.readValue(jedis.get(className + ":" + key), clazz));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
@@ -49,14 +49,14 @@ public class RedisCache<String, V> implements Cache<String, V> {
     @Override
     public void delete(String key) {
         try (Jedis jedis = jedisPool.getResource()) {
-            jedis.del(cacheName + ":" + key);
+            jedis.del(className + ":" + key);
         }
     }
 
     @Override
     public boolean exists(String key) {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.exists(cacheName + ":" + key);
+            return jedis.exists(className + ":" + key);
         }
     }
 
@@ -66,11 +66,11 @@ public class RedisCache<String, V> implements Cache<String, V> {
         Set<V> values = new HashSet<>();
 
         try (Jedis jedis = jedisPool.getResource()) {
-            jedis.keys(cacheName + ":*")
+            jedis.keys(className + ":*")
                     .forEach(key -> {
                         try {
                             values
-                                    .add(mapper.readValue(jedis.get(cacheName + ":" + key), clazz));
+                                    .add(mapper.readValue(jedis.get(className + ":" + key), clazz));
                         } catch (JsonProcessingException e) {
                             e.printStackTrace();
                         }

@@ -22,10 +22,10 @@ public class CoreRedisCacheProvider implements RedisCacheProvider {
     }
 
     @Override
-    public <V> Cache<String, V> findCache(String cacheName, Class<V> clazz) {
+    public <V> Cache<String, V> findCache(Class<V> clazz) {
 
         if (!maps.containsKey(clazz)) {
-            maps.put(clazz, new RedisCache<>(cacheName, clazz, mapper, clientProvider));
+            maps.put(clazz, new RedisCache<>(clazz, mapper, clientProvider));
         }
 
         return (Cache<String, V>) maps.get(clazz);
