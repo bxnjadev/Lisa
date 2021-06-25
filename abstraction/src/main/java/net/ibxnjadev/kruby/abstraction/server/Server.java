@@ -11,6 +11,13 @@ import java.util.function.Consumer;
 public interface Server extends Identifiable {
 
     /**
+     * Get the container id the docker
+     * @return the container id
+     */
+
+    String getContainerId();
+
+    /**
      * Get the template name
      * @return the template name of server
      */
