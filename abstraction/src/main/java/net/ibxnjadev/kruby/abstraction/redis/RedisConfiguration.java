@@ -4,6 +4,7 @@ package net.ibxnjadev.kruby.abstraction.redis;
  * This class contain redis configuration for create a connection
  */
 
+
 public interface RedisConfiguration {
 
     /**
