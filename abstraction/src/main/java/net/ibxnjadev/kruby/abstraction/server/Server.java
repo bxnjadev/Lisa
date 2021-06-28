@@ -72,6 +72,6 @@ public interface Server extends Identifiable {
      * @param consumer the consumer will be executed every time something new is received in the console
      */
 
-    void subscribeConsole(Consumer<String> consumer);
+    void subscribeConsole(Consumer<String> consumer) throws InterruptedException;
 
 }

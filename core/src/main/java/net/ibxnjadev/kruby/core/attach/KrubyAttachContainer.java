@@ -7,15 +7,15 @@ import java.util.function.Consumer;
 
 public class KrubyAttachContainer extends KrubyResultCallbackTemplate<KrubyAttachContainer, Frame> {
 
-    private final Set<Consumer<String>> consumers;
+    private final Consumer<String> consumer;
 
-    public KrubyAttachContainer(Set<Consumer<String>> consumers) {
-        this.consumers = consumers;
+    public KrubyAttachContainer(Consumer<String> consumer) {
+        this.consumer = consumer;
     }
 
     @Override
     public void onNext(Frame frame) {
-        consumers.forEach(consumer -> consumer.accept(format(frame)));
+        consumer.accept(format(frame));
     }
 
     private String format(Frame frame) {

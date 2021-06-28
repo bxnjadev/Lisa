@@ -3,7 +3,9 @@ package net.ibxnjadev.kruby.core.server;
 import com.github.dockerjava.api.DockerClient;
 import net.ibxnjadev.kruby.abstraction.server.Server;
 import net.ibxnjadev.kruby.abstraction.server.ServerType;
+import net.ibxnjadev.kruby.core.attach.KrubyAttachContainer;
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 public class CoreServer implements Server {
@@ -69,7 +71,12 @@ public class CoreServer implements Server {
     }
 
     @Override
-    public void subscribeConsole(Consumer<String> consumer) {
-
+    public void subscribeConsole(Consumer<String> consumer) throws InterruptedException {
+        client.attachContainerCmd(containerId)
+                .withLogs(true)
+                .withStdOut(true)
+                .withFollowStream(true)
+                .exec(new KrubyAttachContainer(consumer))
+                .awaitCompletion(2L, TimeUnit.SECONDS);
     }
 }
