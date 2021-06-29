@@ -18,6 +18,13 @@ public interface Template extends Identifiable {
     String getName();
 
     /**
+     * The image name for create containersw
+     * @return the image name
+     */
+
+    String getImageName();
+
+    /**
      * The type of minecraft server used to create servers
      * @return the type minecraft server
      */
