@@ -2,7 +2,6 @@ package net.ibxnjadev.kruby.core.attach;
 
 import com.github.dockerjava.api.model.Frame;
 
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class KrubyAttachContainer extends KrubyResultCallbackTemplate<KrubyAttachContainer, Frame> {

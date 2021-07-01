@@ -46,6 +46,20 @@ public interface Template extends Identifiable {
     void updatePathJar(String pathJar);
 
     /**
+     * The command start the server
+     * @return the command
+     */
+
+    String getCommandStart();
+
+    /**
+     * Update the command for start the server
+     * @param commandStart the new command start
+     */
+
+    void updateCommandStart(String commandStart);
+
+    /**
      * Obtain the number of servers that will be created from this template when the cloud turns on
      * @return the number of servers that will be created by default
      */
