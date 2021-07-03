@@ -7,6 +7,7 @@ import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.Ports;
 import net.ibxnjadev.kruby.abstraction.server.Server;
 import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.util.ServerUtil;
 
 public class DockerCloudHandler {
 
@@ -29,7 +30,7 @@ public class DockerCloudHandler {
                 .withAttachStderr(true)
                 .withAttachStdout(true)
                 .withAttachStdin(true)
-                .withEnv("PORT=" + port, "COMMAND_START=")
+                .withEnv("PORT=" + port, "COMMAND_START=" + ServerUtil.replaceCommandStart(template))
                 .exec();
 
         return container.getId();

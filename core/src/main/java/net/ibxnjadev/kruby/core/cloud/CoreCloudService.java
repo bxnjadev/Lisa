@@ -5,10 +5,7 @@ import net.ibxnjadev.kruby.abstraction.cloud.CloudService;
 import net.ibxnjadev.kruby.abstraction.server.Server;
 import net.ibxnjadev.kruby.abstraction.template.Template;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class CoreCloudService implements CloudService {
 
@@ -32,16 +29,19 @@ public class CoreCloudService implements CloudService {
 
     @Override
     public void deleteServer(String serverId) {
-
+        findServer(serverId).ifPresent(server -> {
+            dockerCloudHandler.deleteAndStopContainer(server);
+            servers.remove(serverId);
+        });
     }
 
     @Override
     public Optional<Server> findServer(String serverId) {
-        return Optional.empty();
+        return Optional.ofNullable(servers.get(serverId));
     }
 
     @Override
     public Set<Server> getAllServers() {
-        return null;
+        return new HashSet<>(servers.values());
     }
 }
