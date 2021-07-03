@@ -1,7 +1,10 @@
 package net.ibxnjadev.kruby.abstraction.cloud;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
- * this class provides you with the configuration used to make a connection to a backend
+ * Check if a remote connection can be made to a backend
+ * @return if a remote connection can be made to a backend
  */
 
 public interface RemoteCloudConfiguration {
@@ -24,6 +27,7 @@ public interface RemoteCloudConfiguration {
      * @return if a remote connection can be made to a backend
      */
 
+    @JsonIgnore
     boolean isEnabled();
 
     /**
