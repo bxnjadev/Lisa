@@ -1,5 +1,7 @@
 package net.ibxnjadev.kruby.core.util;
 
+import net.ibxnjadev.kruby.abstraction.util.MathUtil;
+
 import java.util.Random;
 
 public class UtilId {
@@ -24,17 +26,12 @@ public class UtilId {
         int value = RANDOM.nextInt(3);
         switch (value) {
             case 0:
-                return (char) getRandomNumberInRange(48, 57);
+                return (char) MathUtil.getRandomNumberInRange(48, 57);
             case 1:
-                return (char) getRandomNumberInRange(65, 90);
+                return (char) MathUtil.getRandomNumberInRange(65, 90);
             default:
-                return (char) getRandomNumberInRange(97, 122);
+                return (char) MathUtil.getRandomNumberInRange(97, 122);
         }
     }
-
-    private static int getRandomNumberInRange(int min, int max) {
-        return (int) Math.floor(Math.random() * (max - min + 1) + min);
-    }
-
 
 }
