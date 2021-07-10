@@ -1,5 +1,7 @@
 package net.ibxnjadev.kruby.core.util;
 
+import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.function.Consumer;
