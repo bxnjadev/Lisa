@@ -2,7 +2,7 @@ package net.ibxnjadev.kruby.core.redis;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ibxnjadev.kruby.abstraction.util.Cache;
+import net.ibxnjadev.kruby.abstraction.util.Storage;
 import net.ibxnjadev.kruby.abstraction.util.ClientProvider;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public class RedisCache<String, V> implements Cache<String, V> {
+public class RedisCache<String, V> implements Storage<String, V> {
 
     private final Class<V> clazz;
     private final ObjectMapper mapper;

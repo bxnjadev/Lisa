@@ -8,7 +8,7 @@ import java.util.Set;
  * @param <V> the object
  */
 
-public interface Cache<String, V> {
+public interface Storage<String, V> {
 
     /**
      * Insert object in cache

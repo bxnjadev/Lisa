@@ -1,9 +1,9 @@
 package net.ibxnjadev.kruby.abstraction.redis;
 
-import net.ibxnjadev.kruby.abstraction.util.Cache;
+import net.ibxnjadev.kruby.abstraction.util.Storage;
 
 public interface RedisCacheProvider {
 
-    <V> Cache<String,V> findCache(Class<V> clazz);
+    <V> Storage<String,V> findCache(Class<V> clazz);
 
 }
