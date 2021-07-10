@@ -25,7 +25,9 @@ public class CoreRedisCacheProvider implements RedisCacheProvider {
     public <V> Storage<String, V> findCache(Class<V> clazz) {
 
         if (!maps.containsKey(clazz)) {
-            maps.put(clazz, new RedisCache<>(clazz, mapper, clientProvider));
+            Storage<String,V> redisCache = new RedisCache<>(clazz, mapper, clientProvider);
+            maps.put(clazz, redisCache);
+            return redisCache;
         }
 
         return (Storage<String, V>) maps.get(clazz);
