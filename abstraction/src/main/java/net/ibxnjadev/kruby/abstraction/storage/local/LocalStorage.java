@@ -10,7 +10,7 @@ import java.io.File;
  * @param <V>
  */
 
-public interface LocalStorage<String,V> extends Storage<String,V> {
+public interface LocalStorage<V> extends Storage<V> {
 
     /**
      * The directory for search the files

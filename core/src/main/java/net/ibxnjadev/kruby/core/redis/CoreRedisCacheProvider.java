@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class CoreRedisCacheProvider implements RedisCacheProvider {
 
-    private final Map<Class<?>, Storage<String, ?>> maps = new HashMap<>();
+    private final Map<Class<?>, Storage<?>> maps = new HashMap<>();
 
     private final ObjectMapper mapper;
     private final ClientProvider<JedisPool> clientProvider;
@@ -22,14 +22,14 @@ public class CoreRedisCacheProvider implements RedisCacheProvider {
     }
 
     @Override
-    public <V> Storage<String, V> findCache(Class<V> clazz) {
+    public <V> Storage<V> findCache(Class<V> clazz) {
 
         if (!maps.containsKey(clazz)) {
-            Storage<String,V> redisCache = new RedisCache<>(clazz, mapper, clientProvider);
+            Storage<V> redisCache = new RedisCache<>(clazz, mapper, clientProvider);
             maps.put(clazz, redisCache);
             return redisCache;
         }
 
-        return (Storage<String, V>) maps.get(clazz);
+        return (Storage<V>) maps.get(clazz);
     }
 }

@@ -4,6 +4,6 @@ import net.ibxnjadev.kruby.abstraction.util.Storage;
 
 public interface RedisCacheProvider {
 
-    <V> Storage<String,V> findCache(Class<V> clazz);
+    <V> Storage<V> findCache(Class<V> clazz);
 
 }

@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public class CoreLocalStorage<V> implements LocalStorage<String, V> {
+public class CoreLocalStorage<V> implements LocalStorage<V> {
 
     private final ObjectMapper mapper;
     private final File directory;
