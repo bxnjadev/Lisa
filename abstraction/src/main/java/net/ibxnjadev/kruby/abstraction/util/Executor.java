@@ -1,4 +1,4 @@
-package net.ibxnjadev.kruby.core.util;
+package net.ibxnjadev.kruby.abstraction.util;
 
 public interface Executor {
 

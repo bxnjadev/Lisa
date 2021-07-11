@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-public class RedisCache<String, V> implements Storage<String, V> {
+public class RedisCache<V> implements Storage<V> {
 
     private final Class<V> clazz;
     private final ObjectMapper mapper;
