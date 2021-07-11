@@ -13,9 +13,6 @@ public class LocalStorageProvider {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     public static <V> LocalStorage<V> findStorage(Class<V> clazz) {
-        if (!LOCAL_STORAGE_CACHE.containsKey(clazz)) {
-            return null;
-        }
         return (LocalStorage<V>) LOCAL_STORAGE_CACHE.get(clazz);
     }
 
