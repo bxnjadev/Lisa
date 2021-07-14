@@ -20,7 +20,7 @@ public interface CloudService {
      * @return The created server
      */
 
-    Server createServer(Template template, int port);
+    Server createServer(Template template, int port, String name);
 
     /**
      * Create a minecraft server based on a template
@@ -28,8 +28,8 @@ public interface CloudService {
      * @return The created server
      */
 
-    default Server createServer(Template template) {
-        return createServer(template, -1);
+    default Server createServer(Template template, String name) {
+        return createServer(template, -1, name);
     }
 
     /**

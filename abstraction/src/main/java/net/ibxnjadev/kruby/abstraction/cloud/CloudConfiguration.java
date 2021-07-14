@@ -17,7 +17,6 @@ public interface CloudConfiguration extends Identifiable {
 
     void setMemory(int memory);
 
-
     String getName();
 
     String getAddress();

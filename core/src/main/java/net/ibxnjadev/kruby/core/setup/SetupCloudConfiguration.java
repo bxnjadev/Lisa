@@ -5,6 +5,7 @@ import net.ibxnjadev.kruby.abstraction.setup.Loader;
 import net.ibxnjadev.kruby.abstraction.util.Executor;
 import net.ibxnjadev.kruby.abstraction.util.InputExecutor;
 import net.ibxnjadev.kruby.abstraction.util.IpProvider;
+import net.ibxnjadev.kruby.core.util.FileSaver;
 import net.ibxnjadev.kruby.core.util.UtilId;
 
 public class SetupCloudConfiguration implements Loader {
@@ -52,6 +53,7 @@ public class SetupCloudConfiguration implements Loader {
         System.out.println("Ip " + configuration.getAddress());
         System.out.println("------------------------------");
 
+        FileSaver.save(configuration);
     }
 
     private static class ErrorInput implements Executor {

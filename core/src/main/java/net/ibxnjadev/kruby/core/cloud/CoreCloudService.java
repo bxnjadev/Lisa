@@ -5,6 +5,8 @@ import net.ibxnjadev.kruby.abstraction.cloud.CloudPortProvider;
 import net.ibxnjadev.kruby.abstraction.cloud.CloudService;
 import net.ibxnjadev.kruby.abstraction.server.Server;
 import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.server.CoreServer;
+import net.ibxnjadev.kruby.core.util.UtilId;
 
 import java.util.*;
 
@@ -22,11 +24,25 @@ public class CoreCloudService implements CloudService {
     }
 
     @Override
-    public Server createServer(Template template, int port) {
+    public Server createServer(Template template, int port, String name) {
 
+        String id = UtilId.randomId();
 
+        if (port == -1) {
+            port = cloudPortProvider.providePort();
+        }
 
-        return null;
+        if (name == null) {
+            name = template.getName() + "_" + id;
+        }
+
+        String containerId = dockerCloudHandler
+                .createContainer(template, port, name);
+
+        Server server = new CoreServer(id, containerId, template.getName(), template.getId(), name, template.getType(), port, dockerClient);
+        servers.put(id, server);
+
+        return server;
     }
 
     @Override
