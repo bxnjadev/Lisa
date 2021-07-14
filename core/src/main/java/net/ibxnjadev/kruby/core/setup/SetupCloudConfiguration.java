@@ -5,6 +5,7 @@ import net.ibxnjadev.kruby.abstraction.setup.Loader;
 import net.ibxnjadev.kruby.abstraction.util.Executor;
 import net.ibxnjadev.kruby.abstraction.util.InputExecutor;
 import net.ibxnjadev.kruby.abstraction.util.IpProvider;
+import net.ibxnjadev.kruby.core.util.UtilId;
 
 public class SetupCloudConfiguration implements Loader {
 
@@ -26,8 +27,14 @@ public class SetupCloudConfiguration implements Loader {
 
         System.out.println(">> Please write a name for your cloud");
 
+        String idRandom = UtilId.randomId();
+
+        configuration.setId(idRandom);
+
         INPUT_EXECUTOR
-                .execute(String.class, configuration::setName, errorInput);
+                .execute(String.class, (s) -> {
+                    configuration.setName(s + "_" + idRandom);
+                }, errorInput);
 
         System.out.println(">> Now please enter the memory in GB that you want to assign to the cloud");
 
@@ -36,6 +43,14 @@ public class SetupCloudConfiguration implements Loader {
 
         configuration
                 .setAddress(IpProvider.provideIp());
+
+        System.out.println("------------------------------");
+        System.out.println("Configured cloud....");
+        System.out.println("Id" + configuration.getId());
+        System.out.println("Name" + configuration.getName());
+        System.out.println("Memory " + configuration.getMemory());
+        System.out.println("Ip " + configuration.getAddress());
+        System.out.println("------------------------------");
 
     }
 

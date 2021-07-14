@@ -5,11 +5,14 @@ import net.ibxnjadev.kruby.abstraction.model.Identifiable;
 
 public interface CloudConfiguration extends Identifiable {
 
+    void setId(String id);
+
     void setName(String name);
 
     void setAddress(String address);
 
     void setMemory(int memory);
+
 
     String getName();
 

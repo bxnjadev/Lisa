@@ -1,11 +1,22 @@
 package net.ibxnjadev.kruby.core.util;
 
+import net.ibxnjadev.kruby.core.mapper.ObjectMapperProvider;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.function.Consumer;
 
 public class FileUtil {
 
+    public static void saveObjectInFile(File file, Object object) {
+        try {
+            ObjectMapperProvider
+            .provideMapper()
+            .writeValue(file, object);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void createFolderAndExecute(String folderName, Consumer<File> consumer) throws IOException {
         createFolderAndExecute(null, folderName, consumer);
