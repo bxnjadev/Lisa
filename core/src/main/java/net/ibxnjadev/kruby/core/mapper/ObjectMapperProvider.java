@@ -4,14 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ObjectMapperProvider {
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     public static ObjectMapper provideMapper() {
-        return objectMapper;
+        return OBJECT_MAPPER;
     }
-
-    public static void setObjectMapper(ObjectMapper mapper) {
-        objectMapper = mapper;
-    }
-
 }

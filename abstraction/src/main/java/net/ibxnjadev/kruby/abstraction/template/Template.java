@@ -4,6 +4,8 @@ import net.ibxnjadev.kruby.abstraction.java.JavaVersion;
 import net.ibxnjadev.kruby.abstraction.server.ServerType;
 import net.ibxnjadev.kruby.abstraction.model.Identifiable;
 
+import java.io.File;
+
 /**
  * This class represent a template for create server
  */
@@ -30,6 +32,13 @@ public interface Template extends Identifiable {
      */
 
     ServerType getType();
+
+    /**
+     * Get the directory the template
+     * @return the template directory
+     */
+
+    File getDirectory();
 
     /**
      * The name the path jar for run the servers

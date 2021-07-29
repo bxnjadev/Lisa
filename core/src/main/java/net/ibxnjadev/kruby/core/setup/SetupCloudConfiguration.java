@@ -1,14 +1,14 @@
 package net.ibxnjadev.kruby.core.setup;
 
 import net.ibxnjadev.kruby.abstraction.cloud.CloudConfiguration;
-import net.ibxnjadev.kruby.abstraction.setup.Loader;
+import net.ibxnjadev.kruby.abstraction.setup.SetupHandler;
 import net.ibxnjadev.kruby.abstraction.util.Executor;
 import net.ibxnjadev.kruby.abstraction.util.InputExecutor;
 import net.ibxnjadev.kruby.abstraction.util.IpProvider;
 import net.ibxnjadev.kruby.core.util.FileSaver;
 import net.ibxnjadev.kruby.core.util.UtilId;
 
-public class SetupCloudConfiguration implements Loader {
+public class SetupCloudConfiguration implements SetupHandler {
 
     private static final InputExecutor INPUT_EXECUTOR = new InputExecutor();
 
@@ -20,7 +20,7 @@ public class SetupCloudConfiguration implements Loader {
     }
 
     @Override
-    public void load() {
+    public void setup() {
         System.out.println("------------------------------");
         System.out.println(">> We are setting up kruby");
         System.out.println(">> Please follow the instructions");
