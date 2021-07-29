@@ -13,6 +13,8 @@ import java.util.Set;
 
 public class CoreLocalStorage<V> implements LocalStorage<V> {
 
+    private static final String JSON_EXTENSION = ".json";
+
     private final ObjectMapper mapper;
     private final File directory;
     private final Class<?> clazz;
@@ -45,7 +47,7 @@ public class CoreLocalStorage<V> implements LocalStorage<V> {
 
     @Override
     public Optional<V> find(String key) {
-        File file = new File(directory, key + ".json");
+        File file = new File(directory, key + JSON_EXTENSION);
 
         if (!file.exists()) {
             return Optional.empty();
@@ -62,14 +64,14 @@ public class CoreLocalStorage<V> implements LocalStorage<V> {
     @Override
     public void delete(String key) {
         if (exists(key)) {
-            File fileDeleted = new File(directory, key + ".json");
+            File fileDeleted = new File(directory, key + JSON_EXTENSION);
             fileDeleted.delete();
         }
     }
 
     @Override
     public boolean exists(String key) {
-        return new File(directory, key + ".json").exists();
+        return new File(directory, key + JSON_EXTENSION).exists();
     }
 
     @Override
