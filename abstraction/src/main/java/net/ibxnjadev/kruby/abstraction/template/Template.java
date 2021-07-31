@@ -14,13 +14,23 @@ public interface Template extends Identifiable {
 
     /**
      * The template name
-      * @return template name
+     *
+     * @return template name
      */
 
     String getName();
 
     /**
+     * Get the docker image template id
+     *
+     * @return the template image id
+     */
+
+    String getImageId();
+
+    /**
      * The image name for create containersw
+     *
      * @return the image name
      */
 
@@ -28,6 +38,7 @@ public interface Template extends Identifiable {
 
     /**
      * The type of minecraft server used to create servers
+     *
      * @return the type minecraft server
      */
 
@@ -35,6 +46,7 @@ public interface Template extends Identifiable {
 
     /**
      * Get the directory the template
+     *
      * @return the template directory
      */
 
@@ -42,6 +54,7 @@ public interface Template extends Identifiable {
 
     /**
      * The name the path jar for run the servers
+     *
      * @return name path jar
      */
 
@@ -49,6 +62,7 @@ public interface Template extends Identifiable {
 
     /**
      * Update the path jar for create servers
+     *
      * @param pathJar the path for run servers
      */
 
@@ -56,20 +70,15 @@ public interface Template extends Identifiable {
 
     /**
      * The command start the server
+     *
      * @return the command
      */
 
     String getCommandStart();
 
     /**
-     * Update the command for start the server
-     * @param commandStart the new command start
-     */
-
-    void updateCommandStart(String commandStart);
-
-    /**
      * Obtain the number of servers that will be created from this template when the cloud turns on
+     *
      * @return the number of servers that will be created by default
      */
 
@@ -77,9 +86,32 @@ public interface Template extends Identifiable {
 
     /**
      * Get the java version the template
+     *
      * @return the java version
      */
 
     JavaVersion getJavaVersion();
+
+    /**
+     * Update the command for start the server
+     *
+     * @param commandStart the new command start
+     */
+
+    void updateCommandStart(String commandStart);
+
+    /**
+     * Set the template id when the image is created
+     * @param imageId the image id
+     */
+
+    void setImageId(String imageId);
+
+    /**
+     * Set the directory template
+     * @param directory the template directory
+     */
+
+    void setDirectory(File directory);
 
 }

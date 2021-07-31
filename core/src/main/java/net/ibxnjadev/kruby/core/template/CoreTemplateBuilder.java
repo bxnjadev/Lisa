@@ -72,7 +72,8 @@ public class CoreTemplateBuilder implements TemplateBuilder {
                 directory,
                 pathJar,
                 quantityServerPerDefect,
-                javaVersion
+                javaVersion,
+                null
         );
     }
 }

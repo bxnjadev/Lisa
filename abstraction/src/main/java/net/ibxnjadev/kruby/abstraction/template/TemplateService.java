@@ -9,11 +9,12 @@ import java.util.Optional;
 public interface TemplateService {
 
     /**
-     * Create the new template based in docker image
+     Create the new template based in docker image
      * @param template the object template
+     * @param dockerfileNameDirectory the dockerfile directory
      */
 
-    void createTemplate(Template template);
+    void createTemplate(Template template, String dockerfileNameDirectory);
 
     /**
      * Register the template in cache and database

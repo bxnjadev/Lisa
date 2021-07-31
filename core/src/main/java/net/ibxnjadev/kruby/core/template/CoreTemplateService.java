@@ -1,7 +1,9 @@
 package net.ibxnjadev.kruby.core.template;
 
+import net.ibxnjadev.kruby.abstraction.storage.local.LocalStorage;
 import net.ibxnjadev.kruby.abstraction.template.Template;
 import net.ibxnjadev.kruby.abstraction.template.TemplateService;
+import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,22 +13,39 @@ public class CoreTemplateService implements TemplateService {
 
     private final Map<String, Template> templates = new HashMap<>();
     private final Map<String, String> templateIds = new HashMap<>();
+    private final LocalStorage<Template> templateLocalStorage;
+
+    private final DockerTemplateHandler dockerTemplateHandler;
+
+    public CoreTemplateService(DockerTemplateHandler dockerTemplateHandler) {
+        this.dockerTemplateHandler = dockerTemplateHandler;
+        templateLocalStorage = LocalStorageProvider.findStorage(Template.class);
+    }
 
     @Override
-    public void createTemplate(Template template) {
+    public void createTemplate(Template template, String dockerfileNameDirectory) {
+
+        TemplateUtil.setupTemplateEnvironment(template, dockerfileNameDirectory);
+        String id = dockerTemplateHandler.createTemplateImage(template);
+        template.setImageId(id);
+        registerTemplate(template);
+
+        templateLocalStorage.add(template.getId(), template);
 
     }
 
     @Override
     public void registerTemplate(Template template) {
-
+        templates.put(template.getId(), template);
+        templateIds.put(template.getName(), template.getName());
     }
 
     @Override
     public void deleteTemplate(String templateId) {
         findTemplate(templateId)
                 .ifPresent(template -> {
-
+                    dockerTemplateHandler.deleteTemplate(templateId);
+                    templateLocalStorage.delete(templateId);
                     templateIds.remove(template.getName());
                     templates.remove(templateId);
                 });

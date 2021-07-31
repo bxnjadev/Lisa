@@ -12,10 +12,11 @@ public class CoreTemplate implements Template {
     private final String name;
     private final String imageName;
     private final ServerType serverType;
-    private final File directory;
+    private File directory;
     private String pathJar;
     private final int quantityServerCreatedPerDefect;
     private final JavaVersion javaVersion;
+    private String imageId;
 
     public CoreTemplate(String id,
                         String name,
@@ -24,7 +25,8 @@ public class CoreTemplate implements Template {
                         File directory,
                         String pathJar,
                         int quantityServerCreatedPerDefect,
-                        JavaVersion javaVersion) {
+                        JavaVersion javaVersion,
+                        String imageId) {
         this.id = id;
         this.name = name;
         this.imageName = imageName;
@@ -33,6 +35,7 @@ public class CoreTemplate implements Template {
         this.pathJar = pathJar;
         this.quantityServerCreatedPerDefect = quantityServerCreatedPerDefect;
         this.javaVersion = javaVersion;
+        this.imageId = imageId;
     }
 
     @Override
@@ -43,6 +46,11 @@ public class CoreTemplate implements Template {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getImageId() {
+        return imageId;
     }
 
     @Override
@@ -78,6 +86,16 @@ public class CoreTemplate implements Template {
     @Override
     public void updateCommandStart(String commandStart) {
 
+    }
+
+    @Override
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
+    }
+
+    @Override
+    public void setDirectory(File directory) {
+        this.directory = directory;
     }
 
     @Override
