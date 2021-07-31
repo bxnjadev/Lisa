@@ -6,6 +6,7 @@ import net.ibxnjadev.kruby.abstraction.template.Template;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * This class manager the templates images in docker
@@ -21,6 +22,7 @@ public class DockerTemplateHandler {
 
     /**
      * Create the image docker based in a template
+     *
      * @param template the template
      * @return the template id
      */
@@ -30,12 +32,14 @@ public class DockerTemplateHandler {
         File directory = template.getDirectory();
         File dockerFile = new File(directory, "Dockerfile");
 
-        try {
-            FileInputStream inputStream = new FileInputStream(dockerFile);
-            return client.createImageCmd(template.getName(), inputStream)
+        try (FileInputStream inputStream = new FileInputStream(dockerFile)) {
+            String idImage = client.createImageCmd(template.getName(), inputStream)
                     .exec()
                     .getId();
-        } catch (FileNotFoundException e) {
+            inputStream.close();
+
+            return idImage;
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -44,6 +48,7 @@ public class DockerTemplateHandler {
 
     /**
      * Delete the template
+     *
      * @param templateId the template id
      */
 
