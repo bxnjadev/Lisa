@@ -1,6 +1,7 @@
 package net.ibxnjadev.kruby.core.template;
 
 import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.util.StreamHelper;
 
 import java.io.*;
 
@@ -26,6 +27,9 @@ public class TemplateUtil {
 
             OutputStream dockerOutputStream = new FileOutputStream(dockerfileTemplate);
             OutputStream entrypointOutputStream = new FileOutputStream(entrypointTemplate);
+
+            StreamHelper.copyStream(dockerInput, dockerOutputStream);
+            StreamHelper.copyStream(entrypointInput, entrypointOutputStream);
 
         } catch (IOException e) {
             e.printStackTrace();
