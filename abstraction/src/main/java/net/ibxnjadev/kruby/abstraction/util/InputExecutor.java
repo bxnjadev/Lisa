@@ -49,4 +49,8 @@ public class InputExecutor {
         }
     }
 
+    public static InputExecutor defaultExecutor() {
+        return new InputExecutor();
+    }
+
 }

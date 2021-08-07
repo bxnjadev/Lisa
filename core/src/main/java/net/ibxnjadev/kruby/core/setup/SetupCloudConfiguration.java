@@ -10,7 +10,7 @@ import net.ibxnjadev.kruby.core.util.UtilId;
 
 public class SetupCloudConfiguration implements SetupHandler {
 
-    private static final InputExecutor INPUT_EXECUTOR = new InputExecutor();
+    private static final InputExecutor INPUT_EXECUTOR = InputExecutor.defaultExecutor();
 
     private final Executor errorInput = new ErrorInput();
     private final CloudConfiguration configuration;
