@@ -74,4 +74,16 @@ public interface Server extends Identifiable {
 
     void subscribeConsole(Consumer<String> consumer) throws InterruptedException;
 
+    /**
+     * Stop the server
+      */
+
+    void stop();
+
+    /**
+     * Start the server
+     */
+
+    void start();
+
 }

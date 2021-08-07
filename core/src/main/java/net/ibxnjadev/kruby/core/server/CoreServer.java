@@ -86,4 +86,15 @@ public class CoreServer implements Server {
                 .exec(new KrubyAttachContainer(consumer))
                 .awaitCompletion(2L, TimeUnit.SECONDS);
     }
+
+    @Override
+    public void start() {
+        client.startContainerCmd(containerId);
+    }
+
+    @Override
+    public void stop() {
+        client.stopContainerCmd(containerId);
+    }
+
 }
