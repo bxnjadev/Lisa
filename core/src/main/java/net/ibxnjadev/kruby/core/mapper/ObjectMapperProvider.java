@@ -9,4 +9,5 @@ public class ObjectMapperProvider {
     public static ObjectMapper provideMapper() {
         return OBJECT_MAPPER;
     }
+
 }

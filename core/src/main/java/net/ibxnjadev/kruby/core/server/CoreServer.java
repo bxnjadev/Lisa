@@ -20,7 +20,14 @@ public class CoreServer implements Server {
 
     private final DockerClient client;
 
-    public CoreServer(String id, String containerId, String templateName, String templateId, String name, ServerType serverType, int port, DockerClient client) {
+    public CoreServer(String id,
+                      String containerId,
+                      String templateName,
+                      String templateId,
+                      String name,
+                      ServerType serverType,
+                      int port,
+                      DockerClient client) {
         this.id = id;
         this.containerId = containerId;
         this.templateName = templateName;
