@@ -32,7 +32,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
         RedisConfiguration redisConfiguration = ObjectFileStorageHelper.load(RedisConfiguration.class);
 
         RedisClientProvider redisClientProvider = new CoreRedisClientProvider(redisConfiguration);
-        redisClientProvider.getClient();
+        redisClientProvider.establishConnection();
 
     }
 

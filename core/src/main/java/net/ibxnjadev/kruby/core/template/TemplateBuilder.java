@@ -1,6 +1,5 @@
 package net.ibxnjadev.kruby.core.template;
 
-import javafx.util.Builder;
 import net.ibxnjadev.kruby.abstraction.java.JavaVersion;
 import net.ibxnjadev.kruby.abstraction.server.ServerType;
 import net.ibxnjadev.kruby.abstraction.template.Template;
@@ -11,7 +10,7 @@ import java.io.File;
  * This class is a builder for build the object Template
  */
 
-public interface TemplateBuilder extends Builder<Template> {
+public interface TemplateBuilder {
 
     /**
      * Set name to template
@@ -68,6 +67,13 @@ public interface TemplateBuilder extends Builder<Template> {
      */
 
     TemplateBuilder setJavaVersion(JavaVersion javaVersion);
+
+    /**
+     * Build the template object based in the actual object builder
+     * @return the new template created to base the actual builder
+     */
+
+    Template build();
 
     static TemplateBuilder provideBuilder() {
         return new CoreTemplateBuilder();
