@@ -13,6 +13,7 @@ public class StreamHelper {
 
         try {
             while ((byteRead = inputStream.read(BUFFER)) != -1) {
+                System.out.println("Writing...");
                 outputStream.write(BUFFER, 0, byteRead);
             }
 
