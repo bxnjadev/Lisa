@@ -32,10 +32,10 @@ public class SetupDockerfiles implements SetupHandler {
         dockerfileDirectory.mkdirs();
 
         InputStream inputStreamDockerfile =
-                StreamHelper.getResource("/dockerfiles/" + dockerfileName + "/Dockerfile");
+                StreamHelper.getResource("dockerfiles/" + dockerfileName + "/Dockerfile");
 
         InputStream inputStreamEntrypoint =
-                StreamHelper.getResource("/dockerfiles/" + dockerfileName + "/entrypoint.sh");
+                StreamHelper.getResource("dockerfiles/" + dockerfileName + "/entrypoint.sh");
 
         File fileDockerfile
                 = new File(dockerfileDirectory, "Dockerfile");
