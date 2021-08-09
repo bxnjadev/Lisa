@@ -3,6 +3,7 @@ package net.ibxnjadev.kruby.core.template;
 import net.ibxnjadev.kruby.core.java.JavaVersion;
 import net.ibxnjadev.kruby.core.server.ServerType;
 
+import java.beans.ConstructorProperties;
 import java.io.File;
 
 public class CoreTemplate implements Template {
@@ -17,6 +18,7 @@ public class CoreTemplate implements Template {
     private final JavaVersion javaVersion;
     private String imageId;
 
+    @ConstructorProperties({"id", "name", "imageName", "serverType", "directory", "pathJar", "quantityServerCreatedPerDefect", "javaVersion", "imageId"})
     public CoreTemplate(String id,
                         String name,
                         String imageName,

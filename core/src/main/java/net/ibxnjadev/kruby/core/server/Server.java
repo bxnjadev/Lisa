@@ -1,13 +1,11 @@
 package net.ibxnjadev.kruby.core.server;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import net.ibxnjadev.kruby.core.model.Identifiable;
 
 import java.util.function.Consumer;
 
-/**
- * This class represents a minecraft server
- */
-
+@JsonDeserialize(as = CoreServer.class)
 public interface Server extends Identifiable {
 
     /**

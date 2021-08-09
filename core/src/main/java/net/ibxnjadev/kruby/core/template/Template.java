@@ -1,15 +1,13 @@
 package net.ibxnjadev.kruby.core.template;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import net.ibxnjadev.kruby.core.java.JavaVersion;
-import net.ibxnjadev.kruby.abstraction.server.ServerType;
 import net.ibxnjadev.kruby.core.model.Identifiable;
+import net.ibxnjadev.kruby.core.server.ServerType;
 
 import java.io.File;
 
-/**
- * This class represent a template for create server
- */
-
+@JsonDeserialize(as = CoreTemplate.class)
 public interface Template extends Identifiable {
 
     /**
