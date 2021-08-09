@@ -1,8 +1,6 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.abstraction.storage.local.LocalStorage;
-import net.ibxnjadev.kruby.abstraction.template.Template;
-import net.ibxnjadev.kruby.abstraction.template.TemplateService;
+import net.ibxnjadev.kruby.core.storage.local.LocalStorage;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 
 import java.util.HashMap;

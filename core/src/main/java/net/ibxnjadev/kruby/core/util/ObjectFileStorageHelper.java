@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.util;
 
-import net.ibxnjadev.kruby.abstraction.annotations.RouteFile;
+import net.ibxnjadev.kruby.core.annotations.RouteFile;
 import net.ibxnjadev.kruby.core.mapper.ObjectMapperProvider;
 
 import java.io.File;

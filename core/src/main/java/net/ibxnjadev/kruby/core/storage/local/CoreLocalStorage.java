@@ -1,7 +1,6 @@
 package net.ibxnjadev.kruby.core.storage.local;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ibxnjadev.kruby.abstraction.storage.local.LocalStorage;
 import net.ibxnjadev.kruby.core.util.FileUtil;
 import org.apache.commons.io.FilenameUtils;
 

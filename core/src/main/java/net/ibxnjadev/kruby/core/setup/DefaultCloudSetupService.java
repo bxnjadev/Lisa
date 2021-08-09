@@ -1,9 +1,8 @@
 package net.ibxnjadev.kruby.core.setup;
 
-import net.ibxnjadev.kruby.abstraction.cloud.CloudConfiguration;
-import net.ibxnjadev.kruby.abstraction.redis.RedisClientProvider;
-import net.ibxnjadev.kruby.abstraction.redis.RedisConfiguration;
-import net.ibxnjadev.kruby.abstraction.setup.CloudSetupService;
+import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
+import net.ibxnjadev.kruby.core.redis.RedisClientProvider;
+import net.ibxnjadev.kruby.core.redis.RedisConfiguration;
 import net.ibxnjadev.kruby.core.cloud.CoreCloudConfiguration;
 import net.ibxnjadev.kruby.core.redis.CoreRedisClientProvider;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;

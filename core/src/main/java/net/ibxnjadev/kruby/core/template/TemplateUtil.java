@@ -1,6 +1,5 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.abstraction.template.Template;
 import net.ibxnjadev.kruby.core.util.StreamHelper;
 
 import java.io.*;

@@ -1,7 +1,6 @@
 package net.ibxnjadev.kruby.core.template;
 
 import com.github.dockerjava.api.DockerClient;
-import net.ibxnjadev.kruby.abstraction.template.Template;
 
 import java.io.File;
 import java.io.FileInputStream;

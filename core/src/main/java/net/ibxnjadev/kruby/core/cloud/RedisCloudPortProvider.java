@@ -1,7 +1,6 @@
 package net.ibxnjadev.kruby.core.cloud;
 
-import net.ibxnjadev.kruby.abstraction.cloud.CloudPortProvider;
-import net.ibxnjadev.kruby.abstraction.util.ClientProvider;
+import net.ibxnjadev.kruby.core.util.ClientProvider;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 

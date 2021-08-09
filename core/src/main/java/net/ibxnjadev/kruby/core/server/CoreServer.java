@@ -1,8 +1,6 @@
 package net.ibxnjadev.kruby.core.server;
 
 import com.github.dockerjava.api.DockerClient;
-import net.ibxnjadev.kruby.abstraction.server.Server;
-import net.ibxnjadev.kruby.abstraction.server.ServerType;
 import net.ibxnjadev.kruby.core.attach.KrubyAttachContainer;
 
 import java.util.concurrent.TimeUnit;

@@ -1,7 +1,5 @@
 package net.ibxnjadev.kruby.core.redis;
 
-import net.ibxnjadev.kruby.abstraction.redis.RedisConfiguration;
-
 import java.beans.ConstructorProperties;
 
 public class CoreRedisConfiguration implements RedisConfiguration {

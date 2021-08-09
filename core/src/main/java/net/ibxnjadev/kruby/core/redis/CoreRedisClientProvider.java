@@ -1,7 +1,5 @@
 package net.ibxnjadev.kruby.core.redis;
 
-import net.ibxnjadev.kruby.abstraction.redis.RedisClientProvider;
-import net.ibxnjadev.kruby.abstraction.redis.RedisConfiguration;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 

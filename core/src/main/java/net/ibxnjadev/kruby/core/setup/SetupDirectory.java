@@ -1,7 +1,5 @@
 package net.ibxnjadev.kruby.core.setup;
 
-import net.ibxnjadev.kruby.abstraction.setup.SetupHandler;
-
 import java.io.File;
 
 public class SetupDirectory implements SetupHandler {

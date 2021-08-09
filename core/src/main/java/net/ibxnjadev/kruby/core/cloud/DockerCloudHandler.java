@@ -5,8 +5,8 @@ import com.github.dockerjava.api.command.CreateContainerResponse;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.Ports;
-import net.ibxnjadev.kruby.abstraction.server.Server;
-import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.server.Server;
+import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.util.ServerUtil;
 
 public class DockerCloudHandler {

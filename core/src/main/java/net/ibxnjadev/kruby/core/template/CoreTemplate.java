@@ -1,8 +1,7 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.abstraction.java.JavaVersion;
-import net.ibxnjadev.kruby.abstraction.server.ServerType;
-import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.java.JavaVersion;
+import net.ibxnjadev.kruby.core.server.ServerType;
 
 import java.io.File;
 

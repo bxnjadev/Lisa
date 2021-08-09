@@ -1,10 +1,9 @@
 package net.ibxnjadev.kruby.core.setup;
 
-import net.ibxnjadev.kruby.abstraction.cloud.CloudConfiguration;
-import net.ibxnjadev.kruby.abstraction.setup.SetupHandler;
-import net.ibxnjadev.kruby.abstraction.util.Executor;
-import net.ibxnjadev.kruby.abstraction.util.InputExecutor;
-import net.ibxnjadev.kruby.abstraction.util.IpProvider;
+import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
+import net.ibxnjadev.kruby.core.util.Executor;
+import net.ibxnjadev.kruby.core.util.InputExecutor;
+import net.ibxnjadev.kruby.core.util.IpProvider;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
 import net.ibxnjadev.kruby.core.util.UtilId;
 
