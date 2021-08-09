@@ -47,10 +47,10 @@ public class SetupCloudConfiguration implements SetupHandler {
 
         System.out.println("------------------------------");
         System.out.println("Configured cloud....");
-        System.out.println("Id" + configuration.getId());
-        System.out.println("Name" + configuration.getName());
+        System.out.println("Id " + configuration.getId());
+        System.out.println("Name " + configuration.getName());
         System.out.println("Memory " + configuration.getMemory());
-        System.out.println("Ip " + configuration.getAddress());
+        System.out.println("IP " + configuration.getAddress());
         System.out.println("------------------------------");
 
         ObjectFileStorageHelper.save(configuration);
