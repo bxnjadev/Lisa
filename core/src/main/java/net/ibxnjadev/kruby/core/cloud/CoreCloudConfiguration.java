@@ -1,8 +1,12 @@
 package net.ibxnjadev.kruby.core.cloud;
 
+import net.ibxnjadev.kruby.abstraction.annotations.RouteFile;
 import net.ibxnjadev.kruby.abstraction.cloud.CloudConfiguration;
 import net.ibxnjadev.kruby.abstraction.cloud.RemoteCloudConfiguration;
 
+@RouteFile(
+        route = "configuration.json"
+)
 public class CoreCloudConfiguration implements CloudConfiguration {
 
     private String id;
