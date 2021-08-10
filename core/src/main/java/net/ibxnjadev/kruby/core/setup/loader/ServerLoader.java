@@ -23,6 +23,10 @@ public class ServerLoader implements Loader {
         File directory = new File("servers");
         LocalStorage<Server> localStorage = LocalStorageProvider.registerStorage(Server.class, directory);
 
+        for (Server server : localStorage.values()) {
+            cloudService.loadServer(server);
+        }
+
     }
 
 }
