@@ -11,9 +11,7 @@ public class ServerLoader implements Loader {
 
     private final CloudService cloudService;
 
-    public ServerLoader(
-            CloudService cloudService
-    ) {
+    public ServerLoader(CloudService cloudService) {
         this.cloudService = cloudService;
     }
 
