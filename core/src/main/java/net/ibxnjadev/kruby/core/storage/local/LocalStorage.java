@@ -6,7 +6,6 @@ import java.io.File;
 
 /**
  * Local storage
- * @param <String>
  * @param <V>
  */
 
