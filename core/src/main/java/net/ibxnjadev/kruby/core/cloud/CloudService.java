@@ -33,6 +33,13 @@ public interface CloudService {
     }
 
     /**
+     * Load the server in cache and run
+     * @param server the server
+     */
+
+    void loadServer(Server server);
+
+    /**
      * Delete a server
      * @param serverId The id of the server you want to delete
      */

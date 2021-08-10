@@ -1,4 +1,4 @@
-package net.ibxnjadev.kruby.core.setup;
+package net.ibxnjadev.kruby.core.setup.loader;
 
 public interface Loader {
 

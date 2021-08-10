@@ -1,10 +1,14 @@
-package net.ibxnjadev.kruby.core.setup;
+package net.ibxnjadev.kruby.core.setup.start;
 
 import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
 import net.ibxnjadev.kruby.core.redis.RedisClientProvider;
 import net.ibxnjadev.kruby.core.redis.RedisConfiguration;
 import net.ibxnjadev.kruby.core.cloud.CoreCloudConfiguration;
 import net.ibxnjadev.kruby.core.redis.CoreRedisClientProvider;
+import net.ibxnjadev.kruby.core.setup.SetupCloudConfiguration;
+import net.ibxnjadev.kruby.core.setup.SetupDirectory;
+import net.ibxnjadev.kruby.core.setup.SetupDockerfiles;
+import net.ibxnjadev.kruby.core.setup.SetupRedis;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
 
 public class DefaultCloudSetupService implements CloudSetupService {

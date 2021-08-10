@@ -44,6 +44,12 @@ public class CoreCloudService implements CloudService {
     }
 
     @Override
+    public void loadServer(Server server) {
+        servers.put(server.getId(), server);
+        server.start();
+    }
+
+    @Override
     public void deleteServer(String serverId) {
         findServer(serverId).ifPresent(server -> {
             dockerCloudHandler.deleteAndStopContainer(server);

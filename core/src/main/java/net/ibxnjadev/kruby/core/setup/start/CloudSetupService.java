@@ -1,4 +1,6 @@
-package net.ibxnjadev.kruby.core.setup;
+package net.ibxnjadev.kruby.core.setup.start;
+
+import net.ibxnjadev.kruby.core.setup.SetupHandler;
 
 import java.io.File;
 
