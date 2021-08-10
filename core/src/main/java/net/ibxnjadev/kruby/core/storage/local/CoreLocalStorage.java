@@ -16,9 +16,9 @@ public class CoreLocalStorage<V> implements LocalStorage<V> {
 
     private final ObjectMapper mapper;
     private final File directory;
-    private final Class<?> clazz;
+    private final Class<V> clazz;
 
-    public CoreLocalStorage(ObjectMapper mapper, File directory, Class<?> clazz) {
+    public CoreLocalStorage(ObjectMapper mapper, File directory, Class<V> clazz) {
         this.mapper = mapper;
         this.directory = directory;
         this.clazz = clazz;
@@ -53,7 +53,7 @@ public class CoreLocalStorage<V> implements LocalStorage<V> {
         }
 
         try {
-            return (Optional<V>) Optional.of(mapper.readValue(file, clazz));
+            return Optional.of(mapper.readValue(file, clazz));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,7 +78,7 @@ public class CoreLocalStorage<V> implements LocalStorage<V> {
         Set<V> values = new HashSet<>();
 
         for (File file : directory.listFiles()) {
-            find(FilenameUtils.removeExtension(file.getName())).ifPresent(v -> values.add(v));
+            find(FilenameUtils.removeExtension(file.getName())).ifPresent(values::add);
         }
 
         return values;
