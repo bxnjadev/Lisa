@@ -12,6 +12,8 @@
     <groupId>net.ibxnjadev.kruby.core</groupId>
     <artifactId>kruby-core</artifactId>
 
+    <name>Kruby</name>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
