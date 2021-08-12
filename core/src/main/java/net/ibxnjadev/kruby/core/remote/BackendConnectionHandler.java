@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.remote;
 
-import net.ibxnjadev.kruby.abstraction.cloud.CloudConfiguration;
+import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
 
 /**
  *This class is in charge of managing requests with the remote backend
