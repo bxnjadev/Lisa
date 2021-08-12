@@ -1,10 +1,12 @@
 package net.ibxnjadev.kruby.core.redis;
 
-/**
- * This class contain redis configuration for create a connection
- */
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import net.ibxnjadev.kruby.core.annotations.RouteFile;
 
-
+@RouteFile(
+        route = "redis.json"
+)
+@JsonDeserialize(as = CoreRedisConfiguration.class)
 public interface RedisConfiguration {
 
     /**
