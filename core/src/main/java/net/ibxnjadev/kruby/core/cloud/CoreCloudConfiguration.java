@@ -2,6 +2,8 @@ package net.ibxnjadev.kruby.core.cloud;
 
 import net.ibxnjadev.kruby.core.annotations.RouteFile;
 
+import java.beans.ConstructorProperties;
+
 @RouteFile(
         route = "configuration.json"
 )
@@ -12,6 +14,21 @@ public class CoreCloudConfiguration implements CloudConfiguration {
     private String address;
     private int memory;
     private RemoteCloudConfiguration remoteCloudConfiguration;
+
+    @ConstructorProperties({"id", "name", "address", "memory", "remote_configuration"})
+    public CoreCloudConfiguration(String id,
+                                  String name,
+                                  int memory,
+                                  RemoteCloudConfiguration remoteCloudConfiguration) {
+        this.id = id;
+        this.name = name;
+        this.memory = memory;
+        this.remoteCloudConfiguration = remoteCloudConfiguration;
+    }
+
+    public CoreCloudConfiguration() {
+
+    }
 
     @Override
     public void setId(String id) {
