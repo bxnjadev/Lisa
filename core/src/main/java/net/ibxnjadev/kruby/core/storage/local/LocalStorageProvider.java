@@ -9,21 +9,25 @@ import java.util.Map;
 
 public class LocalStorageProvider {
 
-    private static final Map<Class<?>, LocalStorage<?>> LOCAL_STORAGE_CACHE = new HashMap<>();
-    private static final ObjectMapper MAPPER = ObjectMapperProvider.provideMapper();
+    private final Map<Class<?>, LocalStorage<?>> Storage = new HashMap<>();
+    private final ObjectMapper Mapper;
 
-    public static <V> LocalStorage<V> findStorage(Class<V> clazz) {
-        return (LocalStorage<V>) LOCAL_STORAGE_CACHE.get(clazz);
+    public LocalStorageProvider(ObjectMapperProvider objectMapperProvider) {
+        this.Mapper = objectMapperProvider.getMapper();
     }
 
-    public static <V> LocalStorage<V> registerStorage(Class<V> clazz, File directory, ObjectMapper externalMapper) {
-        LocalStorage<V> localStorage = new CoreLocalStorage<>(externalMapper == null ? MAPPER : externalMapper, directory, clazz);
-        LOCAL_STORAGE_CACHE.put(clazz,localStorage);
+    public <V> LocalStorage<V> findStorage(Class<V> clazz) {
+        return (LocalStorage<V>) Storage.get(clazz);
+    }
+
+    public <V> LocalStorage<V> registerStorage(Class<V> clazz, File directory, ObjectMapper externalMapper) {
+        LocalStorage<V> localStorage = new CoreLocalStorage<>(externalMapper == null ? Mapper : externalMapper, directory, clazz);
+        Storage.put(clazz, localStorage);
 
         return localStorage;
     }
 
-    public static <V> LocalStorage<V> registerStorage(Class<V> clazz, File directory) {
+    public <V> LocalStorage<V> registerStorage(Class<V> clazz, File directory) {
         return registerStorage(clazz, directory, null);
     }
 

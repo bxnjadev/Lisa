@@ -15,9 +15,9 @@ public class CoreTemplateService implements TemplateService {
 
     private final DockerTemplateHandler dockerTemplateHandler;
 
-    public CoreTemplateService(DockerTemplateHandler dockerTemplateHandler) {
+    public CoreTemplateService(DockerTemplateHandler dockerTemplateHandler, LocalStorageProvider localStorageProvider) {
         this.dockerTemplateHandler = dockerTemplateHandler;
-        templateLocalStorage = LocalStorageProvider.findStorage(Template.class);
+        templateLocalStorage = localStorageProvider.findStorage(Template.class);
     }
 
     @Override

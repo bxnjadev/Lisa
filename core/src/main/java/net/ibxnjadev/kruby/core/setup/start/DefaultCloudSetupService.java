@@ -1,14 +1,26 @@
 package net.ibxnjadev.kruby.core.setup.start;
 
-import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import net.ibxnjadev.kruby.core.cloud.*;
+import net.ibxnjadev.kruby.core.docker.DefaultDockerClientProvider;
+import net.ibxnjadev.kruby.core.docker.DockerClientProvider;
+import net.ibxnjadev.kruby.core.mapper.ObjectMapperProvider;
+import net.ibxnjadev.kruby.core.mapper.deserialize.ServerDeserialize;
 import net.ibxnjadev.kruby.core.redis.RedisClientProvider;
 import net.ibxnjadev.kruby.core.redis.RedisConfiguration;
-import net.ibxnjadev.kruby.core.cloud.CoreCloudConfiguration;
 import net.ibxnjadev.kruby.core.redis.CoreRedisClientProvider;
+import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.setup.SetupCloudConfiguration;
 import net.ibxnjadev.kruby.core.setup.SetupDirectory;
 import net.ibxnjadev.kruby.core.setup.SetupDockerfiles;
 import net.ibxnjadev.kruby.core.setup.SetupRedis;
+import net.ibxnjadev.kruby.core.setup.loader.ServerLoader;
+import net.ibxnjadev.kruby.core.setup.loader.TemplateLoader;
+import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
+import net.ibxnjadev.kruby.core.template.CoreTemplateService;
+import net.ibxnjadev.kruby.core.template.DockerTemplateHandler;
+import net.ibxnjadev.kruby.core.template.TemplateService;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
 
 public class DefaultCloudSetupService implements CloudSetupService {
@@ -34,12 +46,42 @@ public class DefaultCloudSetupService implements CloudSetupService {
             );
         }
 
+        DockerClientProvider dockerClientProvider = new DefaultDockerClientProvider();
+        dockerClientProvider.establishConnection();
+
+        ObjectMapper mapperDefinitive = new ObjectMapper();
+        SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addDeserializer(Server.class, new ServerDeserialize(dockerClientProvider));
+        mapperDefinitive.registerModule(simpleModule);
+
+        ObjectMapperProvider objectMapperProvider = new ObjectMapperProvider(mapperDefinitive);
+
         configuration = ObjectFileStorageHelper.load(CloudConfiguration.class);
         RedisConfiguration redisConfiguration = ObjectFileStorageHelper.load(RedisConfiguration.class);
 
         RedisClientProvider redisClientProvider = new CoreRedisClientProvider(redisConfiguration);
         redisClientProvider.establishConnection();
 
+        LocalStorageProvider localStorageProvider = new LocalStorageProvider(objectMapperProvider);
+
+        CloudPortProvider cloudPortProvider = new RedisCloudPortProvider(redisClientProvider.getClient(), configuration.getAddress());
+
+        CloudService cloudService = new CoreCloudService(
+                dockerClientProvider.getClient(),
+                cloudPortProvider
+        );
+
+        TemplateService templateService = new CoreTemplateService(
+                new DockerTemplateHandler(dockerClientProvider.getClient()),
+                localStorageProvider
+        );
+
+        load(
+                new TemplateLoader(templateService, localStorageProvider),
+                new ServerLoader(cloudService, localStorageProvider)
+        );
+
+        System.out.println("Cloud loaded and running");
     }
 
 }

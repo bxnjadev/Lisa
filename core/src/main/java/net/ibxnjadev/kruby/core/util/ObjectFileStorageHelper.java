@@ -29,7 +29,7 @@ public class ObjectFileStorageHelper {
     private static void saveObject(RouteFile routeFile, Object object) {
         try {
             System.out.println("Saving object in file");
-            ObjectMapperProvider.provideMapper()
+            ObjectMapperProvider.defaultMapper()
                     .writeValue(new File(routeFile.route()), object);
         } catch (IOException e) {
             e.printStackTrace();

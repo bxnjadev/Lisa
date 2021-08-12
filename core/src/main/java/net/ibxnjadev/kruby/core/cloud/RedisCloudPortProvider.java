@@ -1,6 +1,5 @@
 package net.ibxnjadev.kruby.core.cloud;
 
-import net.ibxnjadev.kruby.core.util.ClientProvider;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -9,8 +8,8 @@ public class RedisCloudPortProvider implements CloudPortProvider {
     private final JedisPool jedisPool;
     private final String ip;
 
-    public RedisCloudPortProvider(ClientProvider<JedisPool> clientProvider, String ip) {
-        jedisPool = clientProvider.getClient();
+    public RedisCloudPortProvider(JedisPool jedisPool, String ip) {
+        this.jedisPool = jedisPool;
         this.ip = ip;
     }
 
