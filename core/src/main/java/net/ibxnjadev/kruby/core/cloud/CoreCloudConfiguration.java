@@ -18,10 +18,12 @@ public class CoreCloudConfiguration implements CloudConfiguration {
     @ConstructorProperties({"id", "name", "address", "memory", "remote_configuration"})
     public CoreCloudConfiguration(String id,
                                   String name,
+                                  String address,
                                   int memory,
                                   RemoteCloudConfiguration remoteCloudConfiguration) {
         this.id = id;
         this.name = name;
+        this.address= address;
         this.memory = memory;
         this.remoteCloudConfiguration = remoteCloudConfiguration;
     }
