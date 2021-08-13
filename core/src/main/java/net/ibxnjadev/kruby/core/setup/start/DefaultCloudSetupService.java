@@ -11,10 +11,7 @@ import net.ibxnjadev.kruby.core.redis.RedisClientProvider;
 import net.ibxnjadev.kruby.core.redis.RedisConfiguration;
 import net.ibxnjadev.kruby.core.redis.CoreRedisClientProvider;
 import net.ibxnjadev.kruby.core.server.Server;
-import net.ibxnjadev.kruby.core.setup.SetupCloudConfiguration;
-import net.ibxnjadev.kruby.core.setup.SetupDirectory;
-import net.ibxnjadev.kruby.core.setup.SetupDockerfiles;
-import net.ibxnjadev.kruby.core.setup.SetupRedis;
+import net.ibxnjadev.kruby.core.setup.*;
 import net.ibxnjadev.kruby.core.setup.loader.ServerLoader;
 import net.ibxnjadev.kruby.core.setup.loader.TemplateLoader;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
@@ -79,6 +76,10 @@ public class DefaultCloudSetupService implements CloudSetupService {
         load(
                 new TemplateLoader(templateService, localStorageProvider),
                 new ServerLoader(cloudService, localStorageProvider)
+        );
+
+        setups(
+                new SetupCommand()
         );
 
         System.out.println("Cloud loaded and running");
