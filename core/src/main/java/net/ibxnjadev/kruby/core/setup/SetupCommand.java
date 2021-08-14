@@ -11,15 +11,16 @@ import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
 import net.ibxnjadev.kruby.core.setup.loader.CommandLoader;
 import net.ibxnjadev.kruby.core.setup.loader.Loader;
 import org.jline.reader.LineReader;
-import org.jline.reader.LineReaderBuilder;
-import org.jline.terminal.Terminal;
-import org.jline.terminal.TerminalBuilder;
-
-import java.io.IOException;
 
 public class SetupCommand implements SetupHandler {
 
     private static final String PREFIX = "$ ";
+
+    private final LineReader lineReader;
+
+    public SetupCommand(LineReader lineReader) {
+        this.lineReader = lineReader;
+    }
 
     @Override
     public void setup() {
@@ -34,23 +35,8 @@ public class SetupCommand implements SetupHandler {
         Loader loader = new CommandLoader(annotatedCommandTreeBuilder, commandManager);
         loader.load();
 
-        try {
-            Terminal terminal
-                    = TerminalBuilder.builder()
-                    .color(true)
-                    .build();
-
-            LineReader lineReader
-                    = LineReaderBuilder.builder()
-                    .terminal(terminal)
-                    .build();
-
-            while (true) {
-                commandManager.execute(namespace, lineReader.readLine(PREFIX));
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (true) {
+            commandManager.execute(namespace, lineReader.readLine(PREFIX));
         }
 
     }

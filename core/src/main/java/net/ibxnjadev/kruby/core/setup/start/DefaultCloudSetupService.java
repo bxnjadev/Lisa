@@ -18,6 +18,8 @@ import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 import net.ibxnjadev.kruby.core.template.CoreTemplateService;
 import net.ibxnjadev.kruby.core.template.DockerTemplateHandler;
 import net.ibxnjadev.kruby.core.template.TemplateService;
+import net.ibxnjadev.kruby.core.terminal.TerminalProvider;
+import net.ibxnjadev.kruby.core.util.InputExecutor;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
 
 public class DefaultCloudSetupService implements CloudSetupService {
@@ -26,6 +28,14 @@ public class DefaultCloudSetupService implements CloudSetupService {
     public void setup() {
 
         CloudConfiguration configuration = null;
+
+        TerminalProvider terminalProvider = TerminalProvider.defaultTerminal();
+
+        if (terminalProvider == null) {
+            return;
+        }
+
+        InputExecutor inputExecutor = InputExecutor.defaultExecutor(terminalProvider.getLineReader());
 
         if (!cloudIsConfigured()) {
             System.out.println("");
@@ -37,7 +47,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
 
             setups(
                     new SetupDirectory(),
-                    new SetupCloudConfiguration(configuration),
+                    new SetupCloudConfiguration(configuration,  inputExecutor),
                     new SetupDockerfiles(),
                     new SetupRedis()
             );
@@ -79,7 +89,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
         );
 
         setups(
-                new SetupCommand()
+                new SetupCommand(terminalProvider.getLineReader())
         );
 
         System.out.println("Cloud loaded and running");

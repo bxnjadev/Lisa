@@ -1,56 +1,44 @@
 package net.ibxnjadev.kruby.core.util;
 
+import org.jline.reader.LineReader;
+
 import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class InputExecutor {
 
-    public void executeText(Consumer<String> consumer, Executor executorIfThrow) {
-        execute(null, consumer, executorIfThrow, true);
+    private final LineReader lineReader;
+
+    public InputExecutor(LineReader lineReader) {
+        this.lineReader = lineReader;
     }
 
-    public <T> void execute(Class<T> clazz, Consumer<T> consumer) {
-        execute(clazz, consumer, null);
+    public <T> void execute(Class<T> clazz, Consumer<T> consumer, String prefix) {
+        execute(clazz, consumer, null, prefix);
     }
 
-    public <T> void execute(Class<T> clazz, Consumer<T> consumer, Executor executorIfThrow) {
-        execute(clazz, consumer, executorIfThrow, false);
-    }
+    public <T> void execute(Class<T> clazz, Consumer<T> consumer, Executor executorIfThrow, String prefix) {
 
-    private <T> void execute(Class<T> clazz, Consumer<T> consumer, Executor executorIfThrow, boolean isText) {
-        Scanner scanner = new Scanner(System.in);
+        String line = prefix != null ? lineReader.readLine(prefix) : lineReader.readLine();
 
         try {
-            consumer.accept(isText ? (T) scanner.nextLine() : clazz.cast(create(clazz, scanner)));
+            consumer.accept(clazz.cast(create(clazz, line)));
         } catch (Exception e) {
 
             if (executorIfThrow != null) {
                 executorIfThrow.execute();
             }
 
-            execute(clazz, consumer, executorIfThrow);
+            execute(clazz, consumer, executorIfThrow, prefix);
         }
     }
 
-    private Object create(Class<?> clazz, Scanner scanner) {
-        switch (clazz.getSimpleName()) {
-            case "Double":
-                return scanner.nextDouble();
-            case "Integer":
-                return scanner.nextInt();
-            case "Byte":
-                return scanner.nextByte();
-            case "Float":
-                return scanner.nextFloat();
-            case "Long":
-                return scanner.nextLong();
-            default:
-                return scanner.next();
-        }
+    private Object create(Class<?> clazz, String line) {
+        return clazz.cast(line);
     }
 
-    public static InputExecutor defaultExecutor() {
-        return new InputExecutor();
+    public static InputExecutor defaultExecutor(LineReader lineReader) {
+        return new InputExecutor(lineReader);
     }
 
 }

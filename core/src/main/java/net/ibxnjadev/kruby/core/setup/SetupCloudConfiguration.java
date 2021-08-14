@@ -9,13 +9,14 @@ import net.ibxnjadev.kruby.core.util.UtilId;
 
 public class SetupCloudConfiguration implements SetupHandler {
 
-    private static final InputExecutor INPUT_EXECUTOR = InputExecutor.defaultExecutor();
+    private final InputExecutor inputExecutor;
 
     private final Executor errorInput = new ErrorInput();
     private final CloudConfiguration configuration;
 
-    public SetupCloudConfiguration(CloudConfiguration configuration) {
+    public SetupCloudConfiguration(CloudConfiguration configuration, InputExecutor inputExecutor) {
         this.configuration = configuration;
+        this.inputExecutor = inputExecutor;
     }
 
     @Override
@@ -31,15 +32,15 @@ public class SetupCloudConfiguration implements SetupHandler {
 
         configuration.setId(idRandom);
 
-        INPUT_EXECUTOR
+        inputExecutor
                 .execute(String.class, (s) -> {
                     configuration.setName(s + "_" + idRandom);
-                }, errorInput);
+                }, errorInput, "Enter Cloud Name: ");
 
         System.out.println(">> Now please enter the memory in GB that you want to assign to the cloud");
 
-        INPUT_EXECUTOR
-                .execute(Integer.class, configuration::setMemory, errorInput);
+        inputExecutor
+                .execute(Integer.class, configuration::setMemory, errorInput, "Enter Ram: ");
 
         configuration
                 .setAddress(IpProvider.provideIp());
