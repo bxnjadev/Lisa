@@ -34,7 +34,16 @@ public class InputExecutor {
     }
 
     private Object create(Class<?> clazz, String line) {
-        return clazz.cast(line);
+        switch (clazz.getSimpleName()) {
+            case "Integer":
+                return Integer.parseInt(line);
+            case "Double":
+                return Double.parseDouble(line);
+            case "Float":
+                return Float.parseFloat(line);
+            default:
+                return line;
+        }
     }
 
     public static InputExecutor defaultExecutor(LineReader lineReader) {
