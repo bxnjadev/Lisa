@@ -17,8 +17,8 @@ public class CoreTemplate implements Template {
     private final int quantityServerCreatedPerDefect;
     private final JavaVersion javaVersion;
     private String imageId;
-
-    @ConstructorProperties({"id", "name", "imageName", "serverType", "directory", "pathJar", "quantityServerCreatedPerDefect", "javaVersion", "imageId"})
+    private String commandStart;
+    @ConstructorProperties({"id", "name", "imageName", "serverType", "directory", "pathJar", "quantityServerCreatedPerDefect", "javaVersion", "imageId", "commandStart"})
     public CoreTemplate(String id,
                         String name,
                         String imageName,
@@ -27,7 +27,8 @@ public class CoreTemplate implements Template {
                         String pathJar,
                         int quantityServerCreatedPerDefect,
                         JavaVersion javaVersion,
-                        String imageId) {
+                        String imageId,
+                        String commandStart) {
         this.id = id;
         this.name = name;
         this.imageName = imageName;
@@ -37,6 +38,7 @@ public class CoreTemplate implements Template {
         this.quantityServerCreatedPerDefect = quantityServerCreatedPerDefect;
         this.javaVersion = javaVersion;
         this.imageId = imageId;
+        this.commandStart = commandStart;
     }
 
     @Override
@@ -81,12 +83,12 @@ public class CoreTemplate implements Template {
 
     @Override
     public String getCommandStart() {
-        return null;
+        return commandStart;
     }
 
     @Override
     public void updateCommandStart(String commandStart) {
-
+        this.commandStart = commandStart;
     }
 
     @Override

@@ -12,6 +12,7 @@ public class CoreTemplateBuilder implements TemplateBuilder {
     private String imageName;
     private ServerType serverType;
     private String pathJar;
+    private String commandStart;
     private File directory;
     private int quantityServerPerDefect = 1;
     private JavaVersion javaVersion = JavaVersion.V_8;
@@ -47,6 +48,12 @@ public class CoreTemplateBuilder implements TemplateBuilder {
     }
 
     @Override
+    public TemplateBuilder setCommandStart(String commandStart) {
+        this.commandStart = commandStart;
+        return this;
+    }
+
+    @Override
     public TemplateBuilder setQuantityServerPerDefect(int quantityServerPerDefect) {
         this.quantityServerPerDefect = quantityServerPerDefect;
         return this;
@@ -72,7 +79,8 @@ public class CoreTemplateBuilder implements TemplateBuilder {
                 pathJar,
                 quantityServerPerDefect,
                 javaVersion,
-                null
+                null,
+                commandStart
         );
     }
 }

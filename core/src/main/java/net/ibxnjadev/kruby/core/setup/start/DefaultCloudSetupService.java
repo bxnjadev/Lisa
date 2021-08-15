@@ -89,7 +89,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
         );
 
         setups(
-                new SetupCommand(terminalProvider.getLineReader())
+                new SetupCommand(terminalProvider.getLineReader(), templateService)
         );
 
         System.out.println("Cloud loaded and running");

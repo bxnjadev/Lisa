@@ -6,7 +6,7 @@ import me.fixeddev.commandflow.annotated.annotation.Command;
 @Command(names = "serverlist")
 public class ListServerCommand implements CommandClass {
 
-    @Command(names = "serverlist")
+    @Command(names = "")
     public void main() {
         System.out.println("List");
     }

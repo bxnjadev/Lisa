@@ -52,6 +52,14 @@ public interface TemplateBuilder {
     TemplateBuilder setPathJar(String pathJar);
 
     /**
+     * Set the command start
+     * @param commandStart the command start
+     * @return the builder instance
+     */
+
+    TemplateBuilder setCommandStart(String commandStart);
+
+    /**
      * Set the quantity servers created per defect when the cloud is starting
      * @param quantityServerPerDefect the quantity servers created per defect
      * @return the builder instance
