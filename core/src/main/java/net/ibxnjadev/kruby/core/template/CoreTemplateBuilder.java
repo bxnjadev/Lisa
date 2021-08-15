@@ -15,7 +15,7 @@ public class CoreTemplateBuilder implements TemplateBuilder {
     private String commandStart;
     private File directory;
     private int quantityServerPerDefect = 1;
-    private JavaVersion javaVersion = JavaVersion.V_8;
+    private JavaVersion javaVersion = JavaVersion.JAVA_8;
 
     @Override
     public TemplateBuilder setName(String name) {
