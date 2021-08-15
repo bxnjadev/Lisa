@@ -9,6 +9,8 @@ public class TemplateUtil {
     public static void setupTemplateEnvironment(Template template, String dockerfileNameDirectory) {
 
         File directory = new File("dockerfiles/" + dockerfileNameDirectory);
+
+        System.out.println(directory);
         File dockerfile = new File(directory, "dockerfile");
         File entrypoint = new File(directory, "entrypoint.sh");
 
