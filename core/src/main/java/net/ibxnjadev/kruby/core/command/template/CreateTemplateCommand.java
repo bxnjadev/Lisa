@@ -2,6 +2,7 @@ package net.ibxnjadev.kruby.core.command.template;
 
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
+import me.fixeddev.commandflow.annotated.annotation.Text;
 import net.ibxnjadev.kruby.core.java.JavaVersion;
 import net.ibxnjadev.kruby.core.template.TemplateBuilder;
 import net.ibxnjadev.kruby.core.template.TemplateService;
@@ -18,7 +19,7 @@ public class CreateTemplateCommand implements CommandClass {
     }
 
     @Command(names = "")
-    public void main(String name, int javaVersion, String pathJar, String commandStart) {
+    public void main(String name, int javaVersion, String pathJar, @Text String commandStart) {
 
         File file = new File("templates/" + name);
 
