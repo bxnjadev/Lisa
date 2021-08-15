@@ -32,6 +32,7 @@ public class DockerTemplateHandler {
 
         try (FileInputStream inputStream = new FileInputStream(dockerFile)) {
             String idImage = client.createImageCmd(template.getName(), inputStream)
+                    .withRepository(template.getName())
                     .exec()
                     .getId();
             inputStream.close();
