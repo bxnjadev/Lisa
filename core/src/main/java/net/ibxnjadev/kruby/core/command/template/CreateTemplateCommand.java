@@ -18,15 +18,23 @@ public class CreateTemplateCommand implements CommandClass {
     }
 
     @Command(names = "")
-    public void main(String name, String javaVersion, String pathJar, String commandStart) {
+    public void main(String name, int javaVersion, String pathJar, String commandStart) {
+
+        File file = new File("templates/" + name);
+
+        if (!file.exists()) {
+            System.out.println("The template folder no exists, first create the folder files");
+            return;
+        }
+
         templateService
                 .createTemplate(
                         TemplateBuilder.provideBuilder()
-                        .setDirectory(new File("templates/" + name))
-                        .setJavaVersion(JavaVersion.valueOf(javaVersion))
-                        .setPathJar(pathJar)
-                        .setCommandStart(commandStart)
-                        .build(),
+                                .setDirectory(new File("templates/" + name))
+                                .setJavaVersion(JavaVersion.parse(javaVersion))
+                                .setPathJar(pathJar)
+                                .setCommandStart(commandStart)
+                                .build(),
                         name
                 );
     }
