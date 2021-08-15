@@ -8,6 +8,7 @@ import net.ibxnjadev.kruby.core.template.TemplateBuilder;
 import net.ibxnjadev.kruby.core.template.TemplateService;
 
 import java.io.File;
+import java.util.Locale;
 
 @Command(names = "createtemplate")
 public class CreateTemplateCommand implements CommandClass {
@@ -19,7 +20,7 @@ public class CreateTemplateCommand implements CommandClass {
     }
 
     @Command(names = "")
-    public void main(String name, int javaVersion, String pathJar, @Text String commandStart) {
+    public void main(String name, int javaVersionInt, String pathJar, @Text String commandStart) {
 
         File file = new File("templates/" + name);
 
@@ -28,15 +29,17 @@ public class CreateTemplateCommand implements CommandClass {
             return;
         }
 
+        JavaVersion javaVersion = JavaVersion.parse(javaVersionInt);
+
         templateService
                 .createTemplate(
                         TemplateBuilder.provideBuilder()
-                                .setDirectory(new File("templates/" + name))
-                                .setJavaVersion(JavaVersion.parse(javaVersion))
+                                .setDirectory(file)
+                                .setJavaVersion(javaVersion)
                                 .setPathJar(pathJar)
                                 .setCommandStart(commandStart)
                                 .build(),
-                        name
+                        javaVersion.name().toLowerCase(Locale.ROOT)
                 );
     }
 
