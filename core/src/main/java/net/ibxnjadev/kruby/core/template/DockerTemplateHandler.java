@@ -34,12 +34,8 @@ public class DockerTemplateHandler {
         return client.buildImageCmd()
                 .withDockerfile(dockerFile)
                 .withPull(true)
-<<<<<<< HEAD
-                .withTag("latest")
-=======
                 .withTarget(template.getName())
                 .withTag("1:0")
->>>>>>> 6ec7003c66c2fdad286a51874de1ead971a40587
                 .exec(new BuildImageResultCallback())
                 .awaitImageId();
     }
