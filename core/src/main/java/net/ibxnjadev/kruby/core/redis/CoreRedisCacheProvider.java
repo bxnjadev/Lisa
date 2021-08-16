@@ -1,9 +1,8 @@
 package net.ibxnjadev.kruby.core.redis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ibxnjadev.kruby.abstraction.redis.RedisCacheProvider;
-import net.ibxnjadev.kruby.abstraction.util.Storage;
-import net.ibxnjadev.kruby.abstraction.util.ClientProvider;
+import net.ibxnjadev.kruby.core.util.Storage;
+import net.ibxnjadev.kruby.core.util.ClientProvider;
 import redis.clients.jedis.JedisPool;
 
 import java.util.HashMap;

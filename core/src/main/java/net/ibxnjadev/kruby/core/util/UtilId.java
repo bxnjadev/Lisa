@@ -1,7 +1,5 @@
 package net.ibxnjadev.kruby.core.util;
 
-import net.ibxnjadev.kruby.abstraction.util.MathUtil;
-
 import java.util.Random;
 
 public class UtilId {

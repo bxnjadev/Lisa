@@ -1,22 +1,22 @@
 package net.ibxnjadev.kruby.core.setup;
 
-import net.ibxnjadev.kruby.abstraction.cloud.CloudConfiguration;
-import net.ibxnjadev.kruby.abstraction.setup.SetupHandler;
-import net.ibxnjadev.kruby.abstraction.util.Executor;
-import net.ibxnjadev.kruby.abstraction.util.InputExecutor;
-import net.ibxnjadev.kruby.abstraction.util.IpProvider;
+import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
+import net.ibxnjadev.kruby.core.util.Executor;
+import net.ibxnjadev.kruby.core.util.InputExecutor;
+import net.ibxnjadev.kruby.core.util.IpProvider;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
 import net.ibxnjadev.kruby.core.util.UtilId;
 
 public class SetupCloudConfiguration implements SetupHandler {
 
-    private static final InputExecutor INPUT_EXECUTOR = InputExecutor.defaultExecutor();
+    private final InputExecutor inputExecutor;
 
     private final Executor errorInput = new ErrorInput();
     private final CloudConfiguration configuration;
 
-    public SetupCloudConfiguration(CloudConfiguration configuration) {
+    public SetupCloudConfiguration(CloudConfiguration configuration, InputExecutor inputExecutor) {
         this.configuration = configuration;
+        this.inputExecutor = inputExecutor;
     }
 
     @Override
@@ -32,25 +32,25 @@ public class SetupCloudConfiguration implements SetupHandler {
 
         configuration.setId(idRandom);
 
-        INPUT_EXECUTOR
+        inputExecutor
                 .execute(String.class, (s) -> {
                     configuration.setName(s + "_" + idRandom);
-                }, errorInput);
+                }, errorInput, "Enter Cloud Name: ");
 
         System.out.println(">> Now please enter the memory in GB that you want to assign to the cloud");
 
-        INPUT_EXECUTOR
-                .execute(Integer.class, configuration::setMemory, errorInput);
+        inputExecutor
+                .execute(Integer.class, configuration::setMemory, errorInput, "Enter Ram: ");
 
         configuration
                 .setAddress(IpProvider.provideIp());
 
         System.out.println("------------------------------");
         System.out.println("Configured cloud....");
-        System.out.println("Id" + configuration.getId());
-        System.out.println("Name" + configuration.getName());
+        System.out.println("Id " + configuration.getId());
+        System.out.println("Name " + configuration.getName());
         System.out.println("Memory " + configuration.getMemory());
-        System.out.println("Ip " + configuration.getAddress());
+        System.out.println("IP " + configuration.getAddress());
         System.out.println("------------------------------");
 
         ObjectFileStorageHelper.save(configuration);

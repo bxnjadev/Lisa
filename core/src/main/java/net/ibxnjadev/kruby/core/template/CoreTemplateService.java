@@ -1,8 +1,6 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.abstraction.storage.local.LocalStorage;
-import net.ibxnjadev.kruby.abstraction.template.Template;
-import net.ibxnjadev.kruby.abstraction.template.TemplateService;
+import net.ibxnjadev.kruby.core.storage.local.LocalStorage;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 
 import java.util.HashMap;
@@ -17,9 +15,9 @@ public class CoreTemplateService implements TemplateService {
 
     private final DockerTemplateHandler dockerTemplateHandler;
 
-    public CoreTemplateService(DockerTemplateHandler dockerTemplateHandler) {
+    public CoreTemplateService(DockerTemplateHandler dockerTemplateHandler, LocalStorageProvider localStorageProvider) {
         this.dockerTemplateHandler = dockerTemplateHandler;
-        templateLocalStorage = LocalStorageProvider.findStorage(Template.class);
+        templateLocalStorage = localStorageProvider.findStorage(Template.class);
     }
 
     @Override
@@ -31,7 +29,7 @@ public class CoreTemplateService implements TemplateService {
         registerTemplate(template);
 
         templateLocalStorage.add(template.getId(), template);
-
+        System.out.println("Created Template " + template.getName());
     }
 
     @Override

@@ -1,7 +1,7 @@
 package net.ibxnjadev.kruby.core.template;
 
 import com.github.dockerjava.api.DockerClient;
-import net.ibxnjadev.kruby.abstraction.template.Template;
+import com.github.dockerjava.api.command.BuildImageResultCallback;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,18 +31,12 @@ public class DockerTemplateHandler {
         File directory = template.getDirectory();
         File dockerFile = new File(directory, "Dockerfile");
 
-        try (FileInputStream inputStream = new FileInputStream(dockerFile)) {
-            String idImage = client.createImageCmd(template.getName(), inputStream)
-                    .exec()
-                    .getId();
-            inputStream.close();
-
-            return idImage;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return client.buildImageCmd()
+                .withDockerfile(dockerFile)
+                .withPull(true)
+                .withTag("latest")
+                .exec(new BuildImageResultCallback())
+                .awaitImageId();
     }
 
     /**
@@ -52,8 +46,7 @@ public class DockerTemplateHandler {
      */
 
     public void deleteTemplate(String templateId) {
-        client.removeContainerCmd(templateId)
-                .exec();
+        client.removeImageCmd(templateId).exec();
     }
 
 }

@@ -1,7 +1,7 @@
 package net.ibxnjadev.kruby.core;
 
-import net.ibxnjadev.kruby.abstraction.setup.CloudSetupService;
-import net.ibxnjadev.kruby.core.setup.DefaultCloudSetupService;
+import net.ibxnjadev.kruby.core.setup.start.CloudSetupService;
+import net.ibxnjadev.kruby.core.setup.start.DefaultCloudSetupService;
 
 public class Main {
 

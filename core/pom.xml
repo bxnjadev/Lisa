@@ -12,6 +12,8 @@
     <groupId>net.ibxnjadev.kruby.core</groupId>
     <artifactId>kruby-core</artifactId>
 
+    <name>Kruby</name>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
@@ -79,14 +81,19 @@
             <version>3.6.1</version>
         </dependency>
         <dependency>
-            <groupId>net.ibxnjadev.kruby.abstraction</groupId>
-            <artifactId>kruby-abstraction</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.12.3</version>
+        </dependency>
+        <dependency>
+            <groupId>me.fixeddev</groupId>
+            <artifactId>commandflow-universal</artifactId>
+            <version>0.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jline</groupId>
+            <artifactId>jline</artifactId>
+            <version>3.20.0</version>
         </dependency>
     </dependencies>
 

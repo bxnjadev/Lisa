@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.util;
 
-import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.template.Template;
 
 public class ServerUtil {
 

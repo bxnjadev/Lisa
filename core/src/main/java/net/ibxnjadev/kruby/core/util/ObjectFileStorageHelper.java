@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.util;
 
-import net.ibxnjadev.kruby.abstraction.annotations.RouteFile;
+import net.ibxnjadev.kruby.core.annotations.RouteFile;
 import net.ibxnjadev.kruby.core.mapper.ObjectMapperProvider;
 
 import java.io.File;
@@ -28,8 +28,13 @@ public class ObjectFileStorageHelper {
 
     private static void saveObject(RouteFile routeFile, Object object) {
         try {
+<<<<<<< HEAD
             System.out.println("Saving object...");
             ObjectMapperProvider.provideMapper()
+=======
+            System.out.println("Saving object in file");
+            ObjectMapperProvider.defaultMapper()
+>>>>>>> develop
                     .writeValue(new File(routeFile.route()), object);
         } catch (IOException e) {
             e.printStackTrace();

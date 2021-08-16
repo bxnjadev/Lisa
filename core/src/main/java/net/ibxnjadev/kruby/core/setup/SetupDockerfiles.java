@@ -1,6 +1,5 @@
 package net.ibxnjadev.kruby.core.setup;
 
-import net.ibxnjadev.kruby.abstraction.setup.SetupHandler;
 import net.ibxnjadev.kruby.core.util.StreamHelper;
 
 import java.io.File;

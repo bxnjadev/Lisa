@@ -9,7 +9,7 @@ public class ConfigurationParser {
 
     public static <T> T provideConfiguration(Class<T> clazz, File file) {
         try {
-            return ObjectMapperProvider.provideMapper().readValue(file, clazz);
+            return ObjectMapperProvider.defaultMapper().readValue(file, clazz);
         } catch (IOException e) {
             e.printStackTrace();
         }

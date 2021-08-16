@@ -1,10 +1,8 @@
 package net.ibxnjadev.kruby.core.cloud;
 
 import com.github.dockerjava.api.DockerClient;
-import net.ibxnjadev.kruby.abstraction.cloud.CloudPortProvider;
-import net.ibxnjadev.kruby.abstraction.cloud.CloudService;
-import net.ibxnjadev.kruby.abstraction.server.Server;
-import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.server.Server;
+import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.server.CoreServer;
 import net.ibxnjadev.kruby.core.util.UtilId;
 
@@ -43,6 +41,12 @@ public class CoreCloudService implements CloudService {
         servers.put(id, server);
 
         return server;
+    }
+
+    @Override
+    public void loadServer(Server server) {
+        servers.put(server.getId(), server);
+        server.start();
     }
 
     @Override

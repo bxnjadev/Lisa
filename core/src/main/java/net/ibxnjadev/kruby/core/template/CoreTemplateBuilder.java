@@ -1,8 +1,7 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.abstraction.java.JavaVersion;
-import net.ibxnjadev.kruby.abstraction.server.ServerType;
-import net.ibxnjadev.kruby.abstraction.template.Template;
+import net.ibxnjadev.kruby.core.java.JavaVersion;
+import net.ibxnjadev.kruby.core.server.ServerType;
 import net.ibxnjadev.kruby.core.util.UtilId;
 
 import java.io.File;
@@ -13,9 +12,10 @@ public class CoreTemplateBuilder implements TemplateBuilder {
     private String imageName;
     private ServerType serverType;
     private String pathJar;
+    private String commandStart;
     private File directory;
     private int quantityServerPerDefect = 1;
-    private JavaVersion javaVersion = JavaVersion.V_8;
+    private JavaVersion javaVersion = JavaVersion.JAVA_8;
 
     @Override
     public TemplateBuilder setName(String name) {
@@ -48,6 +48,12 @@ public class CoreTemplateBuilder implements TemplateBuilder {
     }
 
     @Override
+    public TemplateBuilder setCommandStart(String commandStart) {
+        this.commandStart = commandStart;
+        return this;
+    }
+
+    @Override
     public TemplateBuilder setQuantityServerPerDefect(int quantityServerPerDefect) {
         this.quantityServerPerDefect = quantityServerPerDefect;
         return this;
@@ -73,7 +79,8 @@ public class CoreTemplateBuilder implements TemplateBuilder {
                 pathJar,
                 quantityServerPerDefect,
                 javaVersion,
-                null
+                null,
+                commandStart
         );
     }
 }
