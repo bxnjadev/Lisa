@@ -29,7 +29,7 @@ public class CoreTemplateService implements TemplateService {
         registerTemplate(template);
 
         templateLocalStorage.add(template.getId(), template);
-        System.out.println("Created Template " + template.getName());
+        System.out.println(": Created Template " + template.getName());
     }
 
     @Override
