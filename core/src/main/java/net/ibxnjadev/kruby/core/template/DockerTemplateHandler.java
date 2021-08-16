@@ -34,7 +34,8 @@ public class DockerTemplateHandler {
         return client.buildImageCmd()
                 .withDockerfile(dockerFile)
                 .withPull(true)
-                .withTag(template.getName() + ": 1.0")
+                .withTarget(template.getName())
+                .withTag("1:0")
                 .exec(new BuildImageResultCallback())
                 .awaitImageId();
     }
