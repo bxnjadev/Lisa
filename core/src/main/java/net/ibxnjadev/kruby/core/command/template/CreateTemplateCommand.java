@@ -34,6 +34,7 @@ public class CreateTemplateCommand implements CommandClass {
         templateService
                 .createTemplate(
                         TemplateBuilder.provideBuilder()
+                                .setName(name)
                                 .setDirectory(file)
                                 .setJavaVersion(javaVersion)
                                 .setPathJar(pathJar)
