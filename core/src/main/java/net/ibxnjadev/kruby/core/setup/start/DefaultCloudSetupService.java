@@ -17,10 +17,13 @@ import net.ibxnjadev.kruby.core.setup.loader.TemplateLoader;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 import net.ibxnjadev.kruby.core.template.CoreTemplateService;
 import net.ibxnjadev.kruby.core.template.DockerTemplateHandler;
+import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.template.TemplateService;
 import net.ibxnjadev.kruby.core.terminal.TerminalProvider;
 import net.ibxnjadev.kruby.core.util.InputExecutor;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
+
+import java.io.File;
 
 public class DefaultCloudSetupService implements CloudSetupService {
 
@@ -78,6 +81,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
                 cloudPortProvider
         );
 
+        localStorageProvider.registerStorage(Template.class, new File("templates/"));
         TemplateService templateService = new CoreTemplateService(
                 new DockerTemplateHandler(dockerClientProvider.getClient()),
                 localStorageProvider
