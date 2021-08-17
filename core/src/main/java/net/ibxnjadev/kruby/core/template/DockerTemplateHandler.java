@@ -6,6 +6,9 @@ import com.github.dockerjava.api.command.BuildImageResultCallback;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This class manager the templates images in docker
@@ -34,7 +37,7 @@ public class DockerTemplateHandler {
         return client.buildImageCmd()
                 .withDockerfile(dockerFile)
                 .withPull(true)
-                .withTag("1:0")
+                .withTags(asSet(template.getName() + ":latest"))
                 .exec(new BuildImageResultCallback())
                 .awaitImageId();
     }
@@ -47,6 +50,10 @@ public class DockerTemplateHandler {
 
     public void deleteTemplate(String templateId) {
         client.removeImageCmd(templateId).exec();
+    }
+
+    private Set<String> asSet(String... strings) {
+        return new HashSet<String>(Arrays.asList(strings));
     }
 
 }

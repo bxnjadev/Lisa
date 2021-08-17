@@ -56,10 +56,6 @@ public class DefaultCloudSetupService implements CloudSetupService {
         DockerClientProvider dockerClientProvider = new DefaultDockerClientProvider();
         dockerClientProvider.establishConnection();
 
-        dockerClientProvider.getClient().listImagesCmd()
-                .exec()
-                .forEach(System.out::println);
-
         ObjectMapper mapperDefinitive = new ObjectMapper();
         SimpleModule simpleModule = new SimpleModule();
         simpleModule.addDeserializer(Server.class, new ServerDeserialize(dockerClientProvider));
