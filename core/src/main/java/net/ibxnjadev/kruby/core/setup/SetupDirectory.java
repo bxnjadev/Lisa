@@ -9,6 +9,7 @@ public class SetupDirectory implements SetupHandler {
 
         createFolder("servers");
         createFolder("templates");
+        createFolder("templates-registry");
         createFolder("dockerfiles");
 
     }

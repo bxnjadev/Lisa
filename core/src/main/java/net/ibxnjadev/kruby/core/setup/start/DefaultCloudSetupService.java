@@ -81,7 +81,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
                 cloudPortProvider
         );
 
-        localStorageProvider.registerStorage(Template.class, new File("templates/"));
+        localStorageProvider.registerStorage(Template.class, new File("templates-registry/"));
         TemplateService templateService = new CoreTemplateService(
                 new DockerTemplateHandler(dockerClientProvider.getClient()),
                 localStorageProvider
@@ -93,7 +93,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
         );
 
         setups(
-                new SetupCommand(terminalProvider.getLineReader(), templateService)
+                new SetupCommand(terminalProvider.getLineReader(), templateService, cloudService)
         );
 
         System.out.println("Cloud loaded and running");
