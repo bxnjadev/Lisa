@@ -19,11 +19,6 @@ public class CreateServerCommand implements CommandClass {
     }
 
     @Command(names = "")
-    public void main() {
-        System.out.println("createserver <name> [port]");
-    }
-
-    @Command(names = "")
     public void main(String templateName, String name, int port) {
 
         Template template = templateService.getTemplateByName(templateName);

@@ -6,7 +6,7 @@ public class ObjectMapperProvider {
 
     private static final ObjectMapper DEFAULT_OBJECT_MAPPER = new ObjectMapper();
 
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     public ObjectMapperProvider(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
