@@ -3,9 +3,7 @@ package net.ibxnjadev.kruby.core.template;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorage;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class CoreTemplateService implements TemplateService {
 
@@ -94,4 +92,10 @@ public class CoreTemplateService implements TemplateService {
         }
         return false;
     }
+
+    @Override
+    public Set<Template> values() {
+        return new HashSet<>(templates.values());
+    }
+
 }

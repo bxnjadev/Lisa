@@ -24,7 +24,10 @@ public class TemplateLoader implements Loader {
 
         localStorage
                 .values()
-                .forEach(templateService::registerTemplate);
+                .forEach(template -> {
+                    templateService.registerTemplate(template);
+                    System.out.println(": Loaded template " + template.getName());
+                });
 
     }
 

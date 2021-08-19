@@ -7,6 +7,7 @@ import net.ibxnjadev.kruby.core.cloud.CloudService;
 import net.ibxnjadev.kruby.core.command.ListServerCommand;
 import net.ibxnjadev.kruby.core.command.server.CreateServerCommand;
 import net.ibxnjadev.kruby.core.command.template.CreateTemplateCommand;
+import net.ibxnjadev.kruby.core.command.template.ListTemplateCommand;
 import net.ibxnjadev.kruby.core.template.TemplateService;
 
 public class CommandLoader implements Loader {
@@ -16,7 +17,9 @@ public class CommandLoader implements Loader {
     private final TemplateService templateService;
     private final CloudService cloudService;
 
-    public CommandLoader(AnnotatedCommandTreeBuilder annotatedCommandTreeBuilder, CommandManager commandManager, TemplateService templateService, CloudService cloudService) {
+    public CommandLoader(AnnotatedCommandTreeBuilder annotatedCommandTreeBuilder,
+                         CommandManager commandManager, TemplateService templateService,
+                         CloudService cloudService) {
         this.annotatedCommandTreeBuilder = annotatedCommandTreeBuilder;
         this.commandManager = commandManager;
         this.templateService = templateService;
@@ -28,7 +31,8 @@ public class CommandLoader implements Loader {
         register(
                 new ListServerCommand(),
                 new CreateTemplateCommand(templateService),
-                new CreateServerCommand(cloudService, templateService)
+                new CreateServerCommand(cloudService, templateService),
+                new ListTemplateCommand(templateService)
         );
     }
 

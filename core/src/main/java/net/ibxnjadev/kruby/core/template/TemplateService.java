@@ -1,6 +1,7 @@
 package net.ibxnjadev.kruby.core.template;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * This class manage the template system
@@ -84,5 +85,12 @@ public interface TemplateService {
      */
 
     boolean templateExistsByName(String templateName);
+
+    /**
+     * The templates
+     * @return the values
+     */
+
+    Set<Template> values();
 
 }
