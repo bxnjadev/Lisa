@@ -10,10 +10,10 @@ import java.util.Map;
 public class LocalStorageProvider {
 
     private final Map<Class<?>, LocalStorage<?>> Storage = new HashMap<>();
-    private final ObjectMapper Mapper;
+    private final ObjectMapper mapper;
 
     public LocalStorageProvider(ObjectMapperProvider objectMapperProvider) {
-        this.Mapper = objectMapperProvider.getMapper();
+        this.mapper = objectMapperProvider.getMapper();
     }
 
     public <V> LocalStorage<V> findStorage(Class<V> clazz) {
@@ -21,7 +21,7 @@ public class LocalStorageProvider {
     }
 
     public <V> LocalStorage<V> registerStorage(Class<V> clazz, File directory, ObjectMapper externalMapper) {
-        LocalStorage<V> localStorage = new CoreLocalStorage<>(externalMapper == null ? Mapper : externalMapper, directory, clazz);
+        LocalStorage<V> localStorage = new CoreLocalStorage<>(externalMapper == null ? mapper : externalMapper, directory, clazz);
         Storage.put(clazz, localStorage);
 
         return localStorage;

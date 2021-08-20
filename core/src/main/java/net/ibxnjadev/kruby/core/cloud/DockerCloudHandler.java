@@ -19,7 +19,7 @@ public class DockerCloudHandler {
 
     public String createContainer(Template template, int port, String serverName) {
         CreateContainerResponse container = dockerClient
-                .createContainerCmd(template.getImageName())
+                .createContainerCmd(template.getImageId())
                 .withName(serverName)
                 .withExposedPorts(ExposedPort.tcp(port))
                 .withHostConfig(

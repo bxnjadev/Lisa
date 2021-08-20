@@ -20,7 +20,7 @@ public class TemplateLoader implements Loader {
     @Override
     public void load() {
 
-        LocalStorage<Template> localStorage = localStorageProvider.registerStorage(Template.class, new File("templates"));
+        LocalStorage<Template> localStorage = localStorageProvider.findStorage(Template.class);
 
         localStorage
                 .values()

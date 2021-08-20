@@ -10,19 +10,17 @@ public class CoreTemplate implements Template {
 
     private final String id;
     private final String name;
-    private final String imageName;
-    private final ServerType serverType;
+    private final ServerType type;
     private File directory;
     private String pathJar;
     private final int quantityServerCreatedPerDefect;
     private final JavaVersion javaVersion;
     private String imageId;
     private String commandStart;
-    @ConstructorProperties({"id", "name", "imageName", "serverType", "directory", "pathJar", "quantityServerCreatedPerDefect", "javaVersion", "imageId", "commandStart"})
+    @ConstructorProperties({"id", "name", "type", "directory", "pathJar", "quantityServersCreateByDefect", "javaVersion", "imageId", "commandStart"})
     public CoreTemplate(String id,
                         String name,
-                        String imageName,
-                        ServerType serverType,
+                        ServerType type,
                         File directory,
                         String pathJar,
                         int quantityServerCreatedPerDefect,
@@ -31,8 +29,7 @@ public class CoreTemplate implements Template {
                         String commandStart) {
         this.id = id;
         this.name = name;
-        this.imageName = imageName;
-        this.serverType = serverType;
+        this.type = type;
         this.directory = directory;
         this.pathJar = pathJar;
         this.quantityServerCreatedPerDefect = quantityServerCreatedPerDefect;
@@ -57,13 +54,8 @@ public class CoreTemplate implements Template {
     }
 
     @Override
-    public String getImageName() {
-        return imageName;
-    }
-
-    @Override
     public ServerType getType() {
-        return serverType;
+        return type;
     }
 
     @Override

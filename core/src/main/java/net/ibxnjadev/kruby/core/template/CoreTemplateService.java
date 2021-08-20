@@ -33,7 +33,7 @@ public class CoreTemplateService implements TemplateService {
     @Override
     public void registerTemplate(Template template) {
         templates.put(template.getId(), template);
-        templateIds.put(template.getName(), template.getName());
+        templateIds.put(template.getName(), template.getId());
     }
 
     @Override

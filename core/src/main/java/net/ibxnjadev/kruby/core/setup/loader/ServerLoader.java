@@ -20,7 +20,7 @@ public class ServerLoader implements Loader {
     @Override
     public void load() {
 
-        File directory = new File("servers");
+        File directory = new File("servers/");
         LocalStorage<Server> localStorage = localStorageProvider.registerStorage(Server.class, directory);
 
         for (Server server : localStorage.values()) {

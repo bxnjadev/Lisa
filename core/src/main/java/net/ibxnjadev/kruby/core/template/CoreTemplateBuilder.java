@@ -73,7 +73,6 @@ public class CoreTemplateBuilder implements TemplateBuilder {
         return new CoreTemplate(
                 randomId,
                 name,
-                imageName,
                 serverType,
                 directory,
                 pathJar,
