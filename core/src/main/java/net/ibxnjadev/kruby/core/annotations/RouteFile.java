@@ -5,6 +5,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Used for can convert a object to file
+ */
+
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value = ElementType.TYPE)
 public @interface RouteFile {
