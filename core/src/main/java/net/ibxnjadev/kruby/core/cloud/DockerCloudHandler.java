@@ -1,7 +1,9 @@
+
 package net.ibxnjadev.kruby.core.cloud;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.CreateContainerResponse;
+import com.github.dockerjava.api.command.StartContainerCmd;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.Ports;
@@ -18,8 +20,9 @@ public class DockerCloudHandler {
     }
 
     public String createContainer(Template template, int port, String serverName) {
+
         CreateContainerResponse container = dockerClient
-                .createContainerCmd(template.getImageId())
+                .createContainerCmd(template.getName())
                 .withName(serverName)
                 .withExposedPorts(ExposedPort.tcp(port))
                 .withHostConfig(
@@ -32,7 +35,6 @@ public class DockerCloudHandler {
                 .withAttachStdin(true)
                 .withEnv("PORT=" + port, "COMMAND_START=" + ServerUtil.replaceCommandStart(template))
                 .exec();
-
         return container.getId();
     }
 

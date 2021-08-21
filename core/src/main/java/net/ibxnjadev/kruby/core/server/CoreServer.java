@@ -87,12 +87,12 @@ public class CoreServer implements Server {
 
     @Override
     public void start() {
-        client.startContainerCmd(containerId);
+        client.startContainerCmd(containerId).exec();
     }
 
     @Override
     public void stop() {
-        client.stopContainerCmd(containerId);
+        client.stopContainerCmd(containerId).exec();
     }
 
 }

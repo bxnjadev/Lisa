@@ -40,6 +40,8 @@ public class CoreCloudService implements CloudService {
         Server server = new CoreServer(id, containerId, template.getName(), template.getId(), name, template.getType(), port, dockerClient);
         servers.put(id, server);
 
+        server.start();
+
         System.out.println("Server created: " + server.getId());
         return server;
     }
