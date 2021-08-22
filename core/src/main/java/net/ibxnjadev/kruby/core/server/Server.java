@@ -30,6 +30,13 @@ public interface Server extends Identifiable {
     String getTemplateId();
 
     /**
+     * Get if the server is static
+     * @return the server if static
+     */
+
+    boolean isStatic();
+
+    /**
      * restart the server
      */
 

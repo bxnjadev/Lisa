@@ -15,6 +15,7 @@ public class CoreServer implements Server {
     private final String name;
     private final ServerType serverType;
     private final int port;
+    private final boolean isStatic;
 
     private final DockerClient client;
 
@@ -25,6 +26,7 @@ public class CoreServer implements Server {
                       String name,
                       ServerType serverType,
                       int port,
+                      boolean isStatic,
                       DockerClient client) {
         this.id = id;
         this.containerId = containerId;
@@ -33,6 +35,7 @@ public class CoreServer implements Server {
         this.name = name;
         this.serverType = serverType;
         this.port = port;
+        this.isStatic = isStatic;
         this.client = client;
     }
 
@@ -54,6 +57,11 @@ public class CoreServer implements Server {
     @Override
     public String getTemplateId() {
         return templateId;
+    }
+
+    @Override
+    public boolean isStatic() {
+        return isStatic;
     }
 
     @Override

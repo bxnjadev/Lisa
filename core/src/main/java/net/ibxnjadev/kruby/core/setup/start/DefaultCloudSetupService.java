@@ -14,6 +14,7 @@ import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.setup.*;
 import net.ibxnjadev.kruby.core.setup.loader.ServerLoader;
 import net.ibxnjadev.kruby.core.setup.loader.TemplateLoader;
+import net.ibxnjadev.kruby.core.setup.shutdown.CoreCloudShutdown;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 import net.ibxnjadev.kruby.core.template.CoreTemplateService;
 import net.ibxnjadev.kruby.core.template.DockerTemplateHandler;
@@ -92,8 +93,10 @@ public class DefaultCloudSetupService implements CloudSetupService {
                 new ServerLoader(cloudService, localStorageProvider)
         );
 
+        CloudShutdown cloudShutdown = new CoreCloudShutdown(cloudService, redisClientProvider, dockerClientProvider);
+
         setups(
-                new SetupCommand(terminalProvider.getLineReader(), templateService, cloudService)
+                new SetupCommand(terminalProvider.getLineReader(), templateService, cloudService, cloudShutdown)
         );
 
         System.out.println("Cloud loaded and running");

@@ -37,6 +37,7 @@ public class ServerDeserialize extends StdDeserializer<Server> {
                 jsonNode.get("name").asText(),
                 ServerType.valueOf(jsonNode.get("serverType").asText()),
                 jsonNode.get("port").asInt(),
+                jsonNode.get("isStatic").asBoolean(),
                 dockerClientProvider.getClient());
     }
 }

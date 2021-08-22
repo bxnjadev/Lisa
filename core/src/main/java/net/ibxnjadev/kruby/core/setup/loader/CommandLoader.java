@@ -4,7 +4,9 @@ import me.fixeddev.commandflow.CommandManager;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilder;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import net.ibxnjadev.kruby.core.cloud.CloudService;
+import net.ibxnjadev.kruby.core.cloud.CloudShutdown;
 import net.ibxnjadev.kruby.core.command.ListServerCommand;
+import net.ibxnjadev.kruby.core.command.StopCommand;
 import net.ibxnjadev.kruby.core.command.server.CreateServerCommand;
 import net.ibxnjadev.kruby.core.command.template.CreateTemplateCommand;
 import net.ibxnjadev.kruby.core.command.template.ListTemplateCommand;
@@ -16,14 +18,17 @@ public class CommandLoader implements Loader {
     private final CommandManager commandManager;
     private final TemplateService templateService;
     private final CloudService cloudService;
+    private final CloudShutdown cloudShutdown;
 
     public CommandLoader(AnnotatedCommandTreeBuilder annotatedCommandTreeBuilder,
                          CommandManager commandManager, TemplateService templateService,
-                         CloudService cloudService) {
+                         CloudService cloudService,
+                         CloudShutdown cloudShutdown) {
         this.annotatedCommandTreeBuilder = annotatedCommandTreeBuilder;
         this.commandManager = commandManager;
         this.templateService = templateService;
         this.cloudService = cloudService;
+        this.cloudShutdown = cloudShutdown;
     }
 
     @Override
@@ -32,7 +37,8 @@ public class CommandLoader implements Loader {
                 new ListServerCommand(),
                 new CreateTemplateCommand(templateService),
                 new CreateServerCommand(cloudService, templateService),
-                new ListTemplateCommand(templateService)
+                new ListTemplateCommand(templateService),
+                new StopCommand(cloudShutdown)
         );
     }
 

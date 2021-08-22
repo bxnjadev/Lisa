@@ -22,7 +22,7 @@ public class CoreCloudService implements CloudService {
     }
 
     @Override
-    public Server createServer(Template template, int port, String name) {
+    public Server createServer(Template template, int port, String name, boolean isStatic) {
 
         String id = UtilId.randomId();
 
@@ -37,7 +37,7 @@ public class CoreCloudService implements CloudService {
         String containerId = dockerCloudHandler
                 .createContainer(template, port, name);
 
-        Server server = new CoreServer(id, containerId, template.getName(), template.getId(), name, template.getType(), port, dockerClient);
+        Server server = new CoreServer(id, containerId, template.getName(), template.getId(), name, template.getType(), port, isStatic, dockerClient);
         servers.put(id, server);
 
         server.start();

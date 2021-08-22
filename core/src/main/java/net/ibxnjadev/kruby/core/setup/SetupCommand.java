@@ -11,6 +11,7 @@ import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
 import me.fixeddev.commandflow.exception.ArgumentException;
 import me.fixeddev.commandflow.exception.CommandUsage;
 import net.ibxnjadev.kruby.core.cloud.CloudService;
+import net.ibxnjadev.kruby.core.cloud.CloudShutdown;
 import net.ibxnjadev.kruby.core.setup.loader.CommandLoader;
 import net.ibxnjadev.kruby.core.setup.loader.Loader;
 import net.ibxnjadev.kruby.core.template.TemplateService;
@@ -23,11 +24,16 @@ public class SetupCommand implements SetupHandler {
     private final LineReader lineReader;
     private final TemplateService templateService;
     private final CloudService cloudService;
+    private final CloudShutdown cloudShutdown;
 
-    public SetupCommand(LineReader lineReader, TemplateService templateService, CloudService cloudService) {
+    public SetupCommand(LineReader lineReader,
+                        TemplateService templateService,
+                        CloudService cloudService,
+                        CloudShutdown cloudShutdown) {
         this.lineReader = lineReader;
         this.templateService = templateService;
         this.cloudService = cloudService;
+        this.cloudShutdown = cloudShutdown;
     }
 
     @Override
@@ -40,7 +46,7 @@ public class SetupCommand implements SetupHandler {
         CommandManager commandManager = new SimpleCommandManager();
         Namespace namespace = new NamespaceImpl();
 
-        Loader loader = new CommandLoader(annotatedCommandTreeBuilder, commandManager, templateService, cloudService);
+        Loader loader = new CommandLoader(annotatedCommandTreeBuilder, commandManager, templateService, cloudService, cloudShutdown);
         loader.load();
 
         while (true) {

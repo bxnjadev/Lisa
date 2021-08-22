@@ -19,7 +19,7 @@ public class CreateServerCommand implements CommandClass {
     }
 
     @Command(names = "")
-    public void main(String templateName, String name, int port) {
+    public void main(String templateName, String name, int port, boolean isStatic) {
 
         Template template = templateService.getTemplateByName(templateName);
 
@@ -32,7 +32,8 @@ public class CreateServerCommand implements CommandClass {
                 .createServer(
                     template,
                         port,
-                        name
+                        name,
+                        isStatic
                 );
     }
 
