@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 public class SetupDockerfiles implements SetupHandler {
 
     private static final File DIRECTORY = new File("dockerfiles");
@@ -14,43 +13,35 @@ public class SetupDockerfiles implements SetupHandler {
 
     @Override
     public void setup() {
-            try {
+        try {
 
-                for (String dockerFile : DOCKER_FILES) {
-                copyDirectory(dockerFile);
-                }
+            for (String dockerFile : DOCKER_FILES) {
+                copy(dockerFile, "Dockerfile");
+                copy(dockerFile, "entrypoint.sh");
+            }
 
-            } catch (IOException e) {
-                e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public void copyDirectory(String dockerfileName) throws IOException {
+    private void copy(String dockerfileName, String nameFile) throws IOException {
 
         File dockerfileDirectory = new File(DIRECTORY, dockerfileName);
         dockerfileDirectory.mkdirs();
 
         InputStream inputStreamDockerfile =
-                StreamHelper.getResource("dockerfiles/" + dockerfileName + "/Dockerfile");
+                StreamHelper.getResource("dockerfiles/" + dockerfileName + "/" + nameFile);
 
-        InputStream inputStreamEntrypoint =
-                StreamHelper.getResource("dockerfiles/" + dockerfileName + "/entrypoint.sh");
+        File file
+                = new File(dockerfileDirectory, nameFile);
 
-        File fileDockerfile
-                = new File(dockerfileDirectory, "Dockerfile");
-
-        File fileEntrypoint
-                = new File(dockerfileDirectory, "entrypoint.sh");
-
-        fileDockerfile.createNewFile();
-        fileEntrypoint.createNewFile();
+        file.createNewFile();
 
         StreamHelper
-                .copyStream(inputStreamDockerfile, new FileOutputStream(fileDockerfile));
-
-        StreamHelper
-                .copyStream(inputStreamEntrypoint, new FileOutputStream(fileEntrypoint));
+                .copyStream(inputStreamDockerfile, new FileOutputStream(file));
 
     }
 
 }
+

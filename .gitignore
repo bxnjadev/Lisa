@@ -18,3 +18,5 @@ out/
 *.iml
 *.ipr
 *.iws
+
+/core/build/

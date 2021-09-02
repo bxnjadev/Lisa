@@ -10,6 +10,8 @@ import java.util.*;
 
 public class CoreCloudService implements CloudService {
 
+    private static final String SEPARATOR = "_";
+
     private final Map<String, Server> servers = new HashMap<>();
     private final DockerCloudHandler dockerCloudHandler;
     private final DockerClient dockerClient;
@@ -26,21 +28,28 @@ public class CoreCloudService implements CloudService {
 
         String id = UtilId.randomId();
 
-        if (port == -1) {
+        if (port > 0) {
             port = cloudPortProvider.providePort();
         }
 
         if (name == null) {
-            name = template.getName() + "_" + id;
+            name = template.getName() + SEPARATOR + id;
         }
 
         String containerId = dockerCloudHandler
                 .createContainer(template, port, name);
 
-        Server server = new CoreServer(id, containerId, template.getName(), template.getId(), name, template.getType(), port, isStatic, dockerClient);
-        servers.put(id, server);
+        Server server = new CoreServer(id,
+                containerId,
+                template.getName(),
+                template.getId(),
+                name,
+                template.getType(),
+                port,
+                isStatic,
+                dockerClient);
 
-        server.start();
+        loadServer(server);
 
         System.out.println("Server created: " + server.getId());
         return server;

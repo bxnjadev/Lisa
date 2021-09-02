@@ -23,6 +23,7 @@ import net.ibxnjadev.kruby.core.template.TemplateService;
 import net.ibxnjadev.kruby.core.terminal.TerminalProvider;
 import net.ibxnjadev.kruby.core.util.InputExecutor;
 import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
+import redis.clients.jedis.Jedis;
 
 import java.io.File;
 
@@ -51,7 +52,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
 
             setups(
                     new SetupDirectory(),
-                    new SetupCloudConfiguration(configuration,  inputExecutor),
+                    new SetupCloudConfiguration(configuration, inputExecutor),
                     new SetupDockerfiles(),
                     new SetupRedis()
             );
@@ -72,6 +73,12 @@ public class DefaultCloudSetupService implements CloudSetupService {
 
         RedisClientProvider redisClientProvider = new CoreRedisClientProvider(redisConfiguration);
         redisClientProvider.establishConnection();
+
+        try (Jedis jedis = redisClientProvider.getClient().getResource()) {
+            jedis.ping();
+        }
+
+        System.out.println("Ping");
 
         LocalStorageProvider localStorageProvider = new LocalStorageProvider(objectMapperProvider);
 
