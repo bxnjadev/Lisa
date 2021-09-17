@@ -20,3 +20,4 @@ out/
 *.iws
 
 /core/build/
+/helper/build/

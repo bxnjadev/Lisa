@@ -1,8 +1,5 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.core.java.JavaVersion;
-import net.ibxnjadev.kruby.core.server.ServerType;
-
 import java.io.File;
 
 /**
@@ -17,7 +14,7 @@ public interface TemplateBuilder {
      * @return the builder instance
      */
 
-    TemplateBuilder setName(String name);
+    TemplateBuilder name(String name);
 
     /**
      * Set the docker image name
@@ -25,7 +22,7 @@ public interface TemplateBuilder {
      * @return the builder instance
      */
 
-    TemplateBuilder setImageName(String imageName);
+    TemplateBuilder imageName(String imageName);
 
     /**
      * Set the template directory
@@ -33,15 +30,7 @@ public interface TemplateBuilder {
      * @return the builder instance
      */
 
-    TemplateBuilder setDirectory(File directory);
-
-    /**
-     * Set the type minecraft server
-     * @param serverType the type minecraft server
-     * @return the builder instance
-     */
-
-    TemplateBuilder setType(ServerType serverType);
+    TemplateBuilder directory(File directory);
 
     /**
      * Set the path jar
@@ -49,7 +38,7 @@ public interface TemplateBuilder {
      * @return the builder instance
      */
 
-    TemplateBuilder setPathJar(String pathJar);
+    TemplateBuilder pathJar(String pathJar);
 
     /**
      * Set the command start
@@ -57,7 +46,7 @@ public interface TemplateBuilder {
      * @return the builder instance
      */
 
-    TemplateBuilder setCommandStart(String commandStart);
+    TemplateBuilder commandStart(String commandStart);
 
     /**
      * Set the quantity servers created per defect when the cloud is starting
@@ -65,15 +54,7 @@ public interface TemplateBuilder {
      * @return the builder instance
      */
 
-    TemplateBuilder setQuantityServerPerDefect(int quantityServerPerDefect);
-
-    /**
-     * Set the java version for run the minecraft server
-     * @param javaVersion the java version
-     * @return the builder instance
-     */
-
-    TemplateBuilder setJavaVersion(JavaVersion javaVersion);
+    TemplateBuilder quantityServerPerDefect(int quantityServerPerDefect);
 
     /**
      * Build the template object based in the actual object builder

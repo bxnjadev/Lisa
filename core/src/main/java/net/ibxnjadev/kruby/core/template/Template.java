@@ -1,9 +1,7 @@
 package net.ibxnjadev.kruby.core.template;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import net.ibxnjadev.kruby.core.java.JavaVersion;
 import net.ibxnjadev.kruby.core.model.Identifiable;
-import net.ibxnjadev.kruby.core.server.ServerType;
 
 import java.io.File;
 
@@ -25,14 +23,6 @@ public interface Template extends Identifiable {
      */
 
     String getImageId();
-
-    /**
-     * The type of minecraft server used to create servers
-     *
-     * @return the type minecraft server
-     */
-
-    ServerType getType();
 
     /**
      * Get the directory the template
@@ -73,14 +63,6 @@ public interface Template extends Identifiable {
      */
 
     int getQuantityServersCreateByDefect();
-
-    /**
-     * Get the java version the template
-     *
-     * @return the java version
-     */
-
-    JavaVersion getJavaVersion();
 
     /**
      * Update the command for start the server

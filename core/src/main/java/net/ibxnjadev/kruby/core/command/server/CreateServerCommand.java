@@ -3,6 +3,7 @@ package net.ibxnjadev.kruby.core.command.server;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
+import me.fixeddev.commandflow.annotated.annotation.Text;
 import net.ibxnjadev.kruby.core.cloud.CloudService;
 import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.template.TemplateService;
@@ -19,7 +20,7 @@ public class CreateServerCommand implements CommandClass {
     }
 
     @Command(names = "")
-    public void main(String templateName, String name, int port, boolean isStatic) {
+    public void main(String templateName, String name, @OptArg("-1") int port, boolean isStatic, @Text String commandStart) {
 
         Template template = templateService.getTemplateByName(templateName);
 
@@ -33,6 +34,7 @@ public class CreateServerCommand implements CommandClass {
                     template,
                         port,
                         name,
+                        commandStart,
                         isStatic
                 );
     }

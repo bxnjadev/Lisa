@@ -2,8 +2,8 @@ package net.ibxnjadev.kruby.core.redis;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ibxnjadev.kruby.core.util.Storage;
-import net.ibxnjadev.kruby.core.util.ClientProvider;
+import net.ibxnjadev.kruby.core.storage.local.Storage;
+import net.ibxnjadev.kruby.helper.ClientProvider;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 

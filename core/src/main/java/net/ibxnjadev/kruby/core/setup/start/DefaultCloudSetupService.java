@@ -5,8 +5,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import net.ibxnjadev.kruby.core.cloud.*;
 import net.ibxnjadev.kruby.core.docker.DefaultDockerClientProvider;
 import net.ibxnjadev.kruby.core.docker.DockerClientProvider;
-import net.ibxnjadev.kruby.core.mapper.ObjectMapperProvider;
-import net.ibxnjadev.kruby.core.mapper.deserialize.ServerDeserialize;
+import net.ibxnjadev.kruby.core.deserialize.ServerDeserialize;
 import net.ibxnjadev.kruby.core.redis.RedisClientProvider;
 import net.ibxnjadev.kruby.core.redis.RedisConfiguration;
 import net.ibxnjadev.kruby.core.redis.CoreRedisClientProvider;
@@ -21,8 +20,9 @@ import net.ibxnjadev.kruby.core.template.DockerTemplateHandler;
 import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.template.TemplateService;
 import net.ibxnjadev.kruby.core.terminal.TerminalProvider;
-import net.ibxnjadev.kruby.core.util.InputExecutor;
-import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
+import net.ibxnjadev.kruby.helper.input.InputExecutor;
+import net.ibxnjadev.kruby.helper.mapper.ObjectMapperProvider;
+import net.ibxnjadev.kruby.helper.storage.ObjectFileStorage;
 import redis.clients.jedis.Jedis;
 
 import java.io.File;
@@ -68,8 +68,8 @@ public class DefaultCloudSetupService implements CloudSetupService {
 
         ObjectMapperProvider objectMapperProvider = new ObjectMapperProvider(mapperDefinitive);
 
-        configuration = ObjectFileStorageHelper.load(CloudConfiguration.class);
-        RedisConfiguration redisConfiguration = ObjectFileStorageHelper.load(RedisConfiguration.class);
+        configuration = ObjectFileStorage.load(CloudConfiguration.class);
+        RedisConfiguration redisConfiguration = ObjectFileStorage.load(RedisConfiguration.class);
 
         RedisClientProvider redisClientProvider = new CoreRedisClientProvider(redisConfiguration);
         redisClientProvider.establishConnection();

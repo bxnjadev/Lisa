@@ -17,21 +17,25 @@ public interface CloudService {
      * Create a minecraft server based on a template
      * @param template the template that will be used to create the server
      * @param port the server port, if you don't specify the port you will be chosen a random one
-     * @param isStatic defined if the server is static or permanent
+     * @param name the server name
+     * @param commandStart the command for run the server
+     * @param isStatic if the server is static or permanent
      * @return The created server
      */
 
-    Server createServer(Template template, int port, String name, boolean isStatic);
+    Server createServer(Template template, int port, String name, String commandStart, boolean isStatic);
 
     /**
      * Create a minecraft server based on a template
      * @param template the template that will be used to create the server
-     * @param isStatic defined if the server is static or permanent
+     * @param name the server name
+     * @param commandStart the command for run the server
+     * @param isStatic if the server is static or permanent
      * @return The created server
      */
 
-    default Server createServer(Template template, String name, boolean isStatic) {
-        return createServer(template, -1, name, isStatic);
+    default Server createServer(Template template, String name, String commandStart, boolean isStatic) {
+        return createServer(template, -1, name, commandStart, isStatic);
     }
 
     /**

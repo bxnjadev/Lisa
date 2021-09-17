@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.setup;
 
-import net.ibxnjadev.kruby.core.util.StreamHelper;
+import net.ibxnjadev.kruby.helper.io.StreamHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,8 +16,8 @@ public class SetupDockerfiles implements SetupHandler {
         try {
 
             for (String dockerFile : DOCKER_FILES) {
-                copy(dockerFile, "Dockerfile");
-                copy(dockerFile, "entrypoint.sh");
+                copy(dockerFile, "docker/java_template/Dockerfile");
+                copy(dockerFile, "docker/java_template/entrypoint.sh");
             }
 
         } catch (IOException e) {

@@ -1,7 +1,7 @@
 package net.ibxnjadev.kruby.core.redis;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import net.ibxnjadev.kruby.core.annotations.RouteFile;
+import net.ibxnjadev.kruby.helper.storage.RouteFile;
 
 @RouteFile(
         route = "redis.json"

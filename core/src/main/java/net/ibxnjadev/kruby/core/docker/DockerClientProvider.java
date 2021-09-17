@@ -1,7 +1,7 @@
 package net.ibxnjadev.kruby.core.docker;
 
 import com.github.dockerjava.api.DockerClient;
-import net.ibxnjadev.kruby.core.util.ClientProvider;
+import net.ibxnjadev.kruby.helper.ClientProvider;
 
 /**
  * This class provides you with a docker client

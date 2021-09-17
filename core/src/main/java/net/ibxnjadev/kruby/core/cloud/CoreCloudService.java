@@ -4,7 +4,7 @@ import com.github.dockerjava.api.DockerClient;
 import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.server.CoreServer;
-import net.ibxnjadev.kruby.core.util.UtilId;
+import net.ibxnjadev.kruby.helper.UtilId;
 
 import java.util.*;
 
@@ -24,11 +24,11 @@ public class CoreCloudService implements CloudService {
     }
 
     @Override
-    public Server createServer(Template template, int port, String name, boolean isStatic) {
+    public Server createServer(Template template, int port, String name, String commandStart, boolean isStatic) {
 
         String id = UtilId.randomId();
 
-        if (port > 0) {
+        if (port < 0) {
             port = cloudPortProvider.providePort();
         }
 
@@ -37,14 +37,13 @@ public class CoreCloudService implements CloudService {
         }
 
         String containerId = dockerCloudHandler
-                .createContainer(template, port, name);
+                .createContainer(template, port, name, commandStart);
 
         Server server = new CoreServer(id,
                 containerId,
                 template.getName(),
                 template.getId(),
                 name,
-                template.getType(),
                 port,
                 isStatic,
                 dockerClient);

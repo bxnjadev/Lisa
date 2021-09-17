@@ -52,13 +52,6 @@ public interface Server extends Identifiable {
     String getName();
 
     /**
-     * Get server type
-     * @return the server type
-     */
-
-    ServerType getType();
-
-    /**
      * Get the port server
      * @return the port server
      */

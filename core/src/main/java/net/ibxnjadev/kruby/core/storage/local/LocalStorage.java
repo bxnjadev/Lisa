@@ -1,7 +1,5 @@
 package net.ibxnjadev.kruby.core.storage.local;
 
-import net.ibxnjadev.kruby.core.util.Storage;
-
 import java.io.File;
 
 /**

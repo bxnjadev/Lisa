@@ -1,11 +1,11 @@
 package net.ibxnjadev.kruby.core.setup;
 
 import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
-import net.ibxnjadev.kruby.core.util.Executor;
-import net.ibxnjadev.kruby.core.util.InputExecutor;
-import net.ibxnjadev.kruby.core.util.IpProvider;
-import net.ibxnjadev.kruby.core.util.ObjectFileStorageHelper;
-import net.ibxnjadev.kruby.core.util.UtilId;
+import net.ibxnjadev.kruby.helper.Executor;
+import net.ibxnjadev.kruby.helper.IpProvider;
+import net.ibxnjadev.kruby.helper.UtilId;
+import net.ibxnjadev.kruby.helper.input.InputExecutor;
+import net.ibxnjadev.kruby.helper.storage.ObjectFileStorage;
 
 public class SetupCloudConfiguration implements SetupHandler {
 
@@ -53,7 +53,7 @@ public class SetupCloudConfiguration implements SetupHandler {
         System.out.println("IP " + configuration.getAddress());
         System.out.println("------------------------------");
 
-        ObjectFileStorageHelper.save(configuration);
+        ObjectFileStorage.save(configuration);
     }
 
     private static class ErrorInput implements Executor {

@@ -4,8 +4,6 @@ import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.BuildImageResultCallback;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,7 +30,7 @@ public class DockerTemplateHandler {
     public String createTemplateImage(Template template) {
 
         File directory = template.getDirectory();
-        File dockerFile = new File(directory, "Dockerfile");
+        File dockerFile = new File(directory, "docker/java_template/Dockerfile");
 
         return client.buildImageCmd()
                 .withDockerfile(dockerFile)

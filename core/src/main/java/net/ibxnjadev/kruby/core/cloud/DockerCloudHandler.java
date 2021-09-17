@@ -3,13 +3,11 @@ package net.ibxnjadev.kruby.core.cloud;
 
 import com.github.dockerjava.api.DockerClient;
 import com.github.dockerjava.api.command.CreateContainerResponse;
-import com.github.dockerjava.api.command.StartContainerCmd;
 import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.Ports;
 import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.template.Template;
-import net.ibxnjadev.kruby.core.util.ServerUtil;
 
 public class DockerCloudHandler {
 
@@ -19,7 +17,7 @@ public class DockerCloudHandler {
         this.dockerClient = dockerClient;
     }
 
-    public String createContainer(Template template, int port, String serverName) {
+    public String createContainer(Template template, int port, String serverName, String commandStart) {
 
         CreateContainerResponse container = dockerClient
                 .createContainerCmd(template.getName())
@@ -33,18 +31,13 @@ public class DockerCloudHandler {
                 .withAttachStderr(true)
                 .withAttachStdout(true)
                 .withAttachStdin(true)
-                .withEnv("PORT=" + port, "COMMAND_START=" + ServerUtil.replaceCommandStart(template))
+                .withEnv("PORT=" + port, "COMMAND_START=" + commandStart)
                 .exec();
         return container.getId();
     }
 
-    public void stopContainer(Server server) {
-        dockerClient.stopContainerCmd(server.getContainerId())
-                .exec();
-    }
-
     public void deleteAndStopContainer(Server server) {
-        stopContainer(server);
+        server.stop();
         dockerClient.removeContainerCmd(server.getContainerId()).exec();
     }
 

@@ -1,7 +1,9 @@
 package net.ibxnjadev.kruby.core.server;
 
 import com.github.dockerjava.api.DockerClient;
+import com.github.dockerjava.core.command.AttachContainerResultCallback;
 import net.ibxnjadev.kruby.core.attach.KrubyAttachContainer;
+import net.ibxnjadev.kruby.helper.io.StreamHelper;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
@@ -13,7 +15,6 @@ public class CoreServer implements Server {
     private final String templateName;
     private final String templateId;
     private final String name;
-    private final ServerType serverType;
     private final int port;
     private final boolean isStatic;
 
@@ -24,7 +25,6 @@ public class CoreServer implements Server {
                       String templateName,
                       String templateId,
                       String name,
-                      ServerType serverType,
                       int port,
                       boolean isStatic,
                       DockerClient client) {
@@ -33,7 +33,6 @@ public class CoreServer implements Server {
         this.templateName = templateName;
         this.templateId = templateId;
         this.name = name;
-        this.serverType = serverType;
         this.port = port;
         this.isStatic = isStatic;
         this.client = client;
@@ -70,17 +69,15 @@ public class CoreServer implements Server {
     }
 
     @Override
-    public ServerType getType() {
-        return serverType;
-    }
-
-    @Override
     public int getPort() {
         return port;
     }
 
     @Override
     public void sendCommand(String command) {
+        client.attachContainerCmd(containerId)
+                .withStdIn(StreamHelper.transform(command))
+                .exec(new AttachContainerResultCallback());
     }
 
     @Override

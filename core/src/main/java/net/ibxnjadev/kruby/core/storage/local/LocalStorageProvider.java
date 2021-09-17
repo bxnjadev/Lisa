@@ -1,7 +1,7 @@
 package net.ibxnjadev.kruby.core.storage.local;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ibxnjadev.kruby.core.mapper.ObjectMapperProvider;
+import net.ibxnjadev.kruby.helper.mapper.ObjectMapperProvider;
 
 import java.io.File;
 import java.util.HashMap;

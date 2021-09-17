@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.core.util.StreamHelper;
+import net.ibxnjadev.kruby.helper.io.StreamHelper;
 
 import java.io.*;
 
@@ -11,12 +11,12 @@ public class TemplateUtil {
         File directory = new File("dockerfiles/" + dockerfileNameDirectory);
 
         System.out.println(directory);
-        File dockerfile = new File(directory, "Dockerfile");
-        File entrypoint = new File(directory, "entrypoint.sh");
+        File dockerfile = new File(directory, "docker/java_template/Dockerfile");
+        File entrypoint = new File(directory, "docker/java_template/entrypoint.sh");
 
         File directoryTemplate = template.getDirectory();
-        File dockerfileTemplate = new File(directoryTemplate, "Dockerfile");
-        File entrypointTemplate = new File(directoryTemplate, "entrypoint.sh");
+        File dockerfileTemplate = new File(directoryTemplate, "docker/java_template/Dockerfile");
+        File entrypointTemplate = new File(directoryTemplate, "docker/java_template/entrypoint.sh");
 
         try {
 

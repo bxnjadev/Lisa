@@ -17,6 +17,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
     implementation 'me.fixeddev:commandflow-universal:0.4.5'
     implementation 'org.jline:jline:3.20.0'
+    compileOnly project(":helper")
 }
 
 group = 'net.ibxnjadev.kruby.core'

@@ -1,8 +1,5 @@
 package net.ibxnjadev.kruby.core.template;
 
-import net.ibxnjadev.kruby.core.java.JavaVersion;
-import net.ibxnjadev.kruby.core.server.ServerType;
-
 import java.beans.ConstructorProperties;
 import java.io.File;
 
@@ -10,30 +7,24 @@ public class CoreTemplate implements Template {
 
     private final String id;
     private final String name;
-    private final ServerType type;
     private File directory;
     private String pathJar;
     private final int quantityServerCreatedPerDefect;
-    private final JavaVersion javaVersion;
     private String imageId;
     private String commandStart;
-    @ConstructorProperties({"id", "name", "type", "directory", "pathJar", "quantityServersCreateByDefect", "javaVersion", "imageId", "commandStart"})
+    @ConstructorProperties({"id", "name", "directory", "pathJar", "quantityServersCreateByDefect", "imageId", "commandStart"})
     public CoreTemplate(String id,
                         String name,
-                        ServerType type,
                         File directory,
                         String pathJar,
                         int quantityServerCreatedPerDefect,
-                        JavaVersion javaVersion,
                         String imageId,
                         String commandStart) {
         this.id = id;
         this.name = name;
-        this.type = type;
         this.directory = directory;
         this.pathJar = pathJar;
         this.quantityServerCreatedPerDefect = quantityServerCreatedPerDefect;
-        this.javaVersion = javaVersion;
         this.imageId = imageId;
         this.commandStart = commandStart;
     }
@@ -51,11 +42,6 @@ public class CoreTemplate implements Template {
     @Override
     public String getImageId() {
         return imageId;
-    }
-
-    @Override
-    public ServerType getType() {
-        return type;
     }
 
     @Override
@@ -97,10 +83,5 @@ public class CoreTemplate implements Template {
     public int getQuantityServersCreateByDefect() {
         return quantityServerCreatedPerDefect;
     }
-
-    @Override
-    public JavaVersion getJavaVersion() {
-        return javaVersion;
-    }
-
+    
 }

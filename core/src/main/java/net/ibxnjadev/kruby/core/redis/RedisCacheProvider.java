@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.redis;
 
-import net.ibxnjadev.kruby.core.util.Storage;
+import net.ibxnjadev.kruby.core.storage.local.Storage;
 
 public interface RedisCacheProvider {
 
