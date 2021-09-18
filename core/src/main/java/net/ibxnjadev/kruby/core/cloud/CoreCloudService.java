@@ -5,8 +5,10 @@ import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.server.CoreServer;
 import net.ibxnjadev.kruby.helper.UtilId;
+import net.ibxnjadev.kruby.helper.io.StreamHelper;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class CoreCloudService implements CloudService {
 
@@ -14,11 +16,9 @@ public class CoreCloudService implements CloudService {
 
     private final Map<String, Server> servers = new HashMap<>();
     private final DockerCloudHandler dockerCloudHandler;
-    private final DockerClient dockerClient;
     private final CloudPortProvider cloudPortProvider;
 
     public CoreCloudService(DockerClient dockerClient, CloudPortProvider cloudPortProvider) {
-        this.dockerClient = dockerClient;
         this.cloudPortProvider = cloudPortProvider;
         dockerCloudHandler = new DockerCloudHandler(dockerClient);
     }
@@ -45,8 +45,7 @@ public class CoreCloudService implements CloudService {
                 template.getId(),
                 name,
                 port,
-                isStatic,
-                dockerClient);
+                isStatic);
 
         loadServer(server);
 
@@ -55,9 +54,33 @@ public class CoreCloudService implements CloudService {
     }
 
     @Override
+    public void start(Server server) {
+        dockerCloudHandler.startContainer(server);
+    }
+
+    @Override
+    public void stop(Server server) {
+        dockerCloudHandler.startContainer(server);
+    }
+
+    @Override
+    public void sendCommand(Server server, String command) {
+        dockerCloudHandler.writeContainer(server, StreamHelper.transform(command));
+    }
+
+    @Override
+    public void subscribe(Server server, Consumer<String> consumer) {
+        try {
+            dockerCloudHandler.attachContainer(server, consumer);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void loadServer(Server server) {
         servers.put(server.getId(), server);
-        server.start();
+        start(server);
     }
 
     @Override

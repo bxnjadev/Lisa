@@ -5,6 +5,7 @@ import net.ibxnjadev.kruby.core.template.Template;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -37,6 +38,34 @@ public interface CloudService {
     default Server createServer(Template template, String name, String commandStart, boolean isStatic) {
         return createServer(template, -1, name, commandStart, isStatic);
     }
+
+    /**
+     * Start a server
+     * @param server the server
+     */
+
+    void start(Server server);
+
+    /**
+     * Stop a server
+     * @param server the server
+     */
+
+    void stop(Server server);
+
+    /**
+     * Send a command to server
+     * @param command the command
+     */
+
+    void sendCommand(Server server, String command);
+
+    /**
+     * Subscribe for read the console
+     * @param consumer the consumer will be executed every time something new is received in the console
+     */
+
+    void subscribe(Server server, Consumer<String> consumer);
 
     /**
      * Load the server in cache and run

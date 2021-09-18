@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import net.ibxnjadev.kruby.core.cloud.*;
 import net.ibxnjadev.kruby.core.docker.DefaultDockerClientProvider;
 import net.ibxnjadev.kruby.core.docker.DockerClientProvider;
-import net.ibxnjadev.kruby.core.deserialize.ServerDeserialize;
 import net.ibxnjadev.kruby.core.redis.RedisClientProvider;
 import net.ibxnjadev.kruby.core.redis.RedisConfiguration;
 import net.ibxnjadev.kruby.core.redis.CoreRedisClientProvider;
@@ -63,7 +62,6 @@ public class DefaultCloudSetupService implements CloudSetupService {
 
         ObjectMapper mapperDefinitive = new ObjectMapper();
         SimpleModule simpleModule = new SimpleModule();
-        simpleModule.addDeserializer(Server.class, new ServerDeserialize(dockerClientProvider));
         mapperDefinitive.registerModule(simpleModule);
 
         ObjectMapperProvider objectMapperProvider = new ObjectMapperProvider(mapperDefinitive);

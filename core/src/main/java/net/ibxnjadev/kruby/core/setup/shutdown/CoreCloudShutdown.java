@@ -30,7 +30,7 @@ public class CoreCloudShutdown implements CloudShutdown {
         cloudService.getAllServers()
                 .forEach(server -> {
 
-                    server.stop();
+                    cloudService.stop(server);
 
                     if (!server.isStatic()) {
                         cloudService.deleteServer(server.getId());

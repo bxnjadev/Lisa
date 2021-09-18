@@ -37,14 +37,6 @@ public interface Server extends Identifiable {
     boolean isStatic();
 
     /**
-     * restart the server
-     */
-
-    default void restart() {
-        sendCommand("stop");
-    }
-
-    /**
      * Get the server name
      * @return the server name
      */
@@ -57,31 +49,5 @@ public interface Server extends Identifiable {
      */
 
     int getPort();
-
-    /**
-     * Send a command to server
-     * @param command the command
-     */
-
-    void sendCommand(String command);
-
-    /**
-     * Subscribe for read the console
-     * @param consumer the consumer will be executed every time something new is received in the console
-     */
-
-    void subscribeConsole(Consumer<String> consumer) throws InterruptedException;
-
-    /**
-     * Stop the server
-      */
-
-    void stop();
-
-    /**
-     * Start the server
-     */
-
-    void start();
 
 }
