@@ -1,6 +1,7 @@
 package net.ibxnjadev.kruby.core.remote;
 
 import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
+import net.ibxnjadev.kruby.core.remote.message.BackendAuthorizationResponseMessage;
 
 /**
  *This class is in charge of managing requests with the remote backend
@@ -13,13 +14,20 @@ public interface BackendConnectionHandler {
      * @param configuration The configuration of your machine
      */
 
-    void sendConnection(CloudConfiguration configuration);
+    void connect(CloudConfiguration configuration);
+
+    /**
+     * Reconnect the connection with the backend
+     * @param configuration The configuration of your machine
+     */
+
+    void reconnect(CloudConfiguration configuration);
 
     /**
      * This method is executed when the backend responds to you
-     * @param connected The answer of whether a connection to the backend could be made
+     * @param
      */
 
-    void receiveReplyConnection(boolean connected);
+    void receiveAuthorizationResponse(BackendAuthorizationResponseMessage response);
 
 }

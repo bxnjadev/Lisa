@@ -16,8 +16,8 @@ public class SetupDockerfiles implements SetupHandler {
         try {
 
             for (String dockerFile : DOCKER_FILES) {
-                copy(dockerFile, "docker/java_template/Dockerfile");
-                copy(dockerFile, "docker/java_template/entrypoint.sh");
+                copy(dockerFile, "docker/java_8_template/Dockerfile");
+                copy(dockerFile, "docker/java_8_template/entrypoint.sh");
             }
 
         } catch (IOException e) {

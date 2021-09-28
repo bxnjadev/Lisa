@@ -11,6 +11,8 @@ import net.ibxnjadev.kruby.core.command.server.CreateServerCommand;
 import net.ibxnjadev.kruby.core.command.template.CreateTemplateCommand;
 import net.ibxnjadev.kruby.core.command.template.ListTemplateCommand;
 import net.ibxnjadev.kruby.core.template.TemplateService;
+import net.ibxnjadev.kruby.helper.input.ErrorInput;
+import net.ibxnjadev.kruby.helper.input.InputExecutor;
 
 public class CommandLoader implements Loader {
 
@@ -20,23 +22,30 @@ public class CommandLoader implements Loader {
     private final CloudService cloudService;
     private final CloudShutdown cloudShutdown;
 
+    private final InputExecutor inputExecutor;
+    private final ErrorInput errorInput;
+
     public CommandLoader(AnnotatedCommandTreeBuilder annotatedCommandTreeBuilder,
                          CommandManager commandManager, TemplateService templateService,
                          CloudService cloudService,
-                         CloudShutdown cloudShutdown) {
+                         CloudShutdown cloudShutdown,
+                         InputExecutor inputExecutor,
+                         ErrorInput errorInput) {
         this.annotatedCommandTreeBuilder = annotatedCommandTreeBuilder;
         this.commandManager = commandManager;
         this.templateService = templateService;
         this.cloudService = cloudService;
         this.cloudShutdown = cloudShutdown;
+        this.inputExecutor = inputExecutor;
+        this.errorInput = errorInput;
     }
 
     @Override
     public void load() {
         register(
                 new ListServerCommand(),
-                new CreateTemplateCommand(templateService),
-                new CreateServerCommand(cloudService, templateService),
+                new CreateTemplateCommand(templateService, inputExecutor),
+                new CreateServerCommand (cloudService, templateService, inputExecutor, errorInput),
                 new ListTemplateCommand(templateService),
                 new StopCommand(cloudShutdown)
         );

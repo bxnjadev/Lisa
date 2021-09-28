@@ -30,7 +30,7 @@ public class DockerTemplateHandler {
     public String createTemplateImage(Template template) {
 
         File directory = template.getDirectory();
-        File dockerFile = new File(directory, "docker/java_template/Dockerfile");
+        File dockerFile = new File(directory, "docker/java_8_template/Dockerfile");
 
         return client.buildImageCmd()
                 .withDockerfile(dockerFile)

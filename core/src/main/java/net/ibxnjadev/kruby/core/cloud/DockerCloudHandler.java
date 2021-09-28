@@ -13,6 +13,9 @@ import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.helper.io.StreamHelper;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
@@ -24,7 +27,9 @@ public class DockerCloudHandler {
         this.dockerClient = dockerClient;
     }
 
-    public String createContainer(Template template, int port, String serverName, String commandStart) {
+    public String createContainer(Template template, int port, String serverName, String commandStart, String[] variables) {
+
+        String[] definitiveVariables = concat(variables, "PORT= " + port, "COMMAND_START=" + commandStart);
 
         CreateContainerResponse container = dockerClient
                 .createContainerCmd(template.getName())
@@ -38,7 +43,7 @@ public class DockerCloudHandler {
                 .withAttachStderr(true)
                 .withAttachStdout(true)
                 .withAttachStdin(true)
-                .withEnv("PORT=" + port, "COMMAND_START=" + commandStart)
+                .withEnv(definitiveVariables)
                 .exec();
         return container.getId();
     }
@@ -76,4 +81,21 @@ public class DockerCloudHandler {
         return portsBinding;
     }
 
+    private String[] concat(String[] variables, String... values) {
+        if (variables == null) {
+            return values;
+        }
+
+        List<String> list = new ArrayList<>();
+
+        Collections.addAll(list, variables);
+        Collections.addAll(list, values);
+
+        String[] definitive = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            definitive[i] = list.get(i);
+        }
+
+        return definitive;
+    }
 }

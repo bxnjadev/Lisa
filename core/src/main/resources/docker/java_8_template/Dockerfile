@@ -1,4 +1,4 @@
-FROM ${JAVA_VERSION}
+FROM openjdk:8
 
 COPY . .
 EXPOSE ${PORT}

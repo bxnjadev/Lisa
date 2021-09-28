@@ -1,27 +1,46 @@
 package net.ibxnjadev.kruby.core.remote;
 
 import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
-import net.ibxnjadev.kruby.core.cloud.RemoteCloudConfiguration;
+import net.ibxnjadev.kruby.core.remote.message.AuthorizationMessage;
+import net.ibxnjadev.kruby.core.remote.message.BackendAuthorizationResponseMessage;
+import net.ibxnjadev.vmesseger.universal.Messenger;
 
 public class CoreBackendConnectionHandler implements BackendConnectionHandler {
 
-    private final RemoteCloudConfiguration remoteCloudConfiguration;
+    private final CloudConfiguration cloudConfiguration;
+    private final Messenger messenger;
+
+    private static final String CHANNEL_AUTHORIZATION = "AUTHORIZATION";
 
     public CoreBackendConnectionHandler(
-            RemoteCloudConfiguration remoteCloudConfiguration
+            CloudConfiguration cloudConfiguration,
+            Messenger messenger
     ) {
-        this.remoteCloudConfiguration = remoteCloudConfiguration;
+        this.cloudConfiguration = cloudConfiguration;
+        this.messenger = messenger;
+
+        messenger.intercept(CHANNEL_AUTHORIZATION, BackendAuthorizationResponseMessage.class, (this::receiveAuthorizationResponse));
     }
 
     @Override
-    public void sendConnection(CloudConfiguration configuration) {
-
+    public void connect(CloudConfiguration configuration) {
+        messenger.sendMessage(CHANNEL_AUTHORIZATION, new AuthorizationMessage(cloudConfiguration, false));
     }
 
     @Override
-    public void receiveReplyConnection(boolean connected) {
-        if (connected) {
-            remoteCloudConfiguration.establishConnected();
+    public void reconnect(CloudConfiguration configuration) {
+        messenger.sendMessage(CHANNEL_AUTHORIZATION, new AuthorizationMessage(cloudConfiguration, true));
+    }
+
+    @Override
+    public void receiveAuthorizationResponse(BackendAuthorizationResponseMessage response) {
+        if (!response.isConnected()) {
+            System.out.println(response.getMessageError());
+            return;
         }
+
+
     }
+
+
 }

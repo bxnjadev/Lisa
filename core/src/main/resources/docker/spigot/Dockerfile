@@ -1,4 +1,4 @@
-FROM ${JAVA_VERSION}
+FROM openjdk:${VERSION_JAVA}
 
 RUN curl ${SPIGOT_JAR} --output server.jar
 RUN touch eula.txt

@@ -4,6 +4,7 @@ import net.ibxnjadev.kruby.core.cloud.CloudConfiguration;
 import net.ibxnjadev.kruby.helper.Executor;
 import net.ibxnjadev.kruby.helper.IpProvider;
 import net.ibxnjadev.kruby.helper.UtilId;
+import net.ibxnjadev.kruby.helper.input.ErrorInput;
 import net.ibxnjadev.kruby.helper.input.InputExecutor;
 import net.ibxnjadev.kruby.helper.storage.ObjectFileStorage;
 
@@ -54,13 +55,6 @@ public class SetupCloudConfiguration implements SetupHandler {
         System.out.println("------------------------------");
 
         ObjectFileStorage.save(configuration);
-    }
-
-    private static class ErrorInput implements Executor {
-        @Override
-        public void execute() {
-            System.out.println(">> You have entered a data incorrectly, please enter the requested information again");
-        }
     }
 
 }

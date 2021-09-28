@@ -22,6 +22,9 @@ import net.ibxnjadev.kruby.core.terminal.TerminalProvider;
 import net.ibxnjadev.kruby.helper.input.InputExecutor;
 import net.ibxnjadev.kruby.helper.mapper.ObjectMapperProvider;
 import net.ibxnjadev.kruby.helper.storage.ObjectFileStorage;
+import net.ibxnjadev.vmesseger.universal.Messenger;
+import net.ibxnjadev.vmesseger.universal.serialize.ObjectJacksonAdapter;
+import net.ibxnjadev.vmessenger.redis.RedisMessenger;
 import redis.clients.jedis.Jedis;
 
 import java.io.File;
@@ -75,6 +78,9 @@ public class DefaultCloudSetupService implements CloudSetupService {
         try (Jedis jedis = redisClientProvider.getClient().getResource()) {
             jedis.ping();
         }
+
+        Messenger messenger =
+                new RedisMessenger("Kruby", redisClientProvider.getClient(), new ObjectJacksonAdapter());
 
         System.out.println("Ping");
 

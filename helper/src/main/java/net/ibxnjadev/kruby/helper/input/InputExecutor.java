@@ -33,6 +33,21 @@ public class InputExecutor {
         }
     }
 
+    public <T> T get(Class<T> clazz, Executor executorIfThrow, String prefix){
+        String line = prefix != null ? lineReader.readLine(prefix) : lineReader.readLine();
+
+        try {
+            return clazz.cast(create(clazz, line));
+        } catch (Exception e) {
+
+            if (executorIfThrow != null) {
+                executorIfThrow.execute();
+            }
+
+        }
+        return get(clazz, executorIfThrow, prefix);
+    }
+
     private Object create(Class<?> clazz, String line) {
         switch (clazz.getSimpleName()) {
             case "Integer":

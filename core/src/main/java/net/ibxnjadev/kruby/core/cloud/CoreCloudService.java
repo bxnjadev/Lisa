@@ -24,7 +24,7 @@ public class CoreCloudService implements CloudService {
     }
 
     @Override
-    public Server createServer(Template template, int port, String name, String commandStart, boolean isStatic) {
+    public Server createServer(Template template, int port, String name, String commandStart, boolean isStatic, String[] variables) {
 
         String id = UtilId.randomId();
 
@@ -37,7 +37,7 @@ public class CoreCloudService implements CloudService {
         }
 
         String containerId = dockerCloudHandler
-                .createContainer(template, port, name, commandStart);
+                .createContainer(template, port, name, commandStart, variables);
 
         Server server = new CoreServer(id,
                 containerId,
@@ -60,7 +60,7 @@ public class CoreCloudService implements CloudService {
 
     @Override
     public void stop(Server server) {
-        dockerCloudHandler.startContainer(server);
+        dockerCloudHandler.stopContainer(server);
     }
 
     @Override
