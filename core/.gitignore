@@ -2,6 +2,7 @@
 ## Java
 ##############################
 .mtj.tmp/
+target/
 *.class
 *.jar
 *.war
@@ -18,6 +19,3 @@ out/
 *.iml
 *.ipr
 *.iws
-
-/core/build/
-/helper/build/

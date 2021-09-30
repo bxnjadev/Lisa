@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+
+    maven {
+        url "https://repo.unnamed.team/repository/unnamed-public/"
+    }
+
+}
+
+dependencies {
+    implementation 'com.github.docker-java:docker-java:3.2.10'
+    implementation 'redis.clients:jedis:3.6.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+    implementation 'me.fixeddev:commandflow-universal:0.4.5'
+    implementation 'net.ibxnjadev.vmessenger.redis:redis:0.1.0'
+    implementation 'net.ibxnjadev.vmessenger.universal:universal:0.1.0'
+    implementation 'org.jline:jline:3.20.0'
+    compileOnly project(":helper")
+}
+
+group = 'net.ibxnjadev.kruby.core'
+description = 'Kruby'

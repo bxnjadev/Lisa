@@ -1,0 +1,6 @@
+rootProject.name = 'Kruby'
+include 'core'
+include 'untitled'
+include 'helper'
+include 'messenger'
+
