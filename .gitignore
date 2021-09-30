@@ -19,5 +19,6 @@ out/
 *.ipr
 *.iws
 
+./gradle/
 /core/build/
 /helper/build/
