@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.cloud;
 
-import net.ibxnjadev.kruby.core.annotations.RouteFile;
+import net.ibxnjadev.kruby.helper.storage.RouteFile;
 
 import java.beans.ConstructorProperties;
 

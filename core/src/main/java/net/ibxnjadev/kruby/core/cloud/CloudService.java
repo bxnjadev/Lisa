@@ -2,6 +2,7 @@ package net.ibxnjadev.kruby.core.cloud;
 
 import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.template.Template;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 import java.util.Set;
@@ -77,10 +78,10 @@ public interface CloudService {
 
     /**
      * Delete a server
-     * @param serverId The id of the server you want to delete
+     * @param server the server
      */
 
-    void deleteServer(String serverId);
+    void deleteServer(Server server);
 
     /**
      * Find a server
@@ -88,7 +89,17 @@ public interface CloudService {
      * @return The server you searched for
      */
 
-    Optional<Server> findServer(String serverId);
+    @Nullable
+    Server getServer(String serverId);
+
+    /**
+     * Find a server
+     * @param serverName the name Server
+     * @return The server you searched for
+     */
+
+    @Nullable
+    Server getServerByName(String serverName);
 
     /**
      * Get all servers

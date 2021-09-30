@@ -33,7 +33,7 @@ public class CoreCloudShutdown implements CloudShutdown {
                     cloudService.stop(server);
 
                     if (!server.isStatic()) {
-                        cloudService.deleteServer(server.getId());
+                        cloudService.deleteServer(server);
                     }
                 });
 

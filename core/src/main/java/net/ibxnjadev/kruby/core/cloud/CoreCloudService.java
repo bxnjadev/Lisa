@@ -6,6 +6,7 @@ import net.ibxnjadev.kruby.core.template.Template;
 import net.ibxnjadev.kruby.core.server.CoreServer;
 import net.ibxnjadev.kruby.helper.UtilId;
 import net.ibxnjadev.kruby.helper.io.StreamHelper;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -15,6 +16,8 @@ public class CoreCloudService implements CloudService {
     private static final String SEPARATOR = "_";
 
     private final Map<String, Server> servers = new HashMap<>();
+    private final Map<String, String> serversIds = new HashMap<>();
+
     private final DockerCloudHandler dockerCloudHandler;
     private final CloudPortProvider cloudPortProvider;
 
@@ -80,20 +83,24 @@ public class CoreCloudService implements CloudService {
     @Override
     public void loadServer(Server server) {
         servers.put(server.getId(), server);
+        serversIds.put(server.getName(), server.getId());
         start(server);
     }
 
     @Override
-    public void deleteServer(String serverId) {
-        findServer(serverId).ifPresent(server -> {
-            dockerCloudHandler.deleteAndStopContainer(server);
-            servers.remove(serverId);
-        });
+    public void deleteServer(Server server) {
+        dockerCloudHandler.deleteAndStopContainer(server);
+        servers.remove(server.getId());
     }
 
     @Override
-    public Optional<Server> findServer(String serverId) {
-        return Optional.ofNullable(servers.get(serverId));
+    public Server getServer(String serverId) {
+        return servers.get(serverId);
+    }
+
+    @Override
+    public @Nullable Server getServerByName(String serverName) {
+        return getServer(serversIds.get(serverName));
     }
 
     @Override
