@@ -1,5 +1,7 @@
 package net.ibxnjadev.kruby.core.messenger.message;
 
+import java.beans.ConstructorProperties;
+
 public class CreateServerMessage {
 
     private final String templateName;
@@ -9,7 +11,16 @@ public class CreateServerMessage {
     private final int port;
     private final String[] variables;
 
-
+    @ConstructorProperties(
+            {
+                    "template_name",
+                    "server_name",
+                    "command_start",
+                    "is_static",
+                    "port",
+                    "variables"
+            }
+    )
     public CreateServerMessage(String templateName,
                                String serverName,
                                String commandStart,
