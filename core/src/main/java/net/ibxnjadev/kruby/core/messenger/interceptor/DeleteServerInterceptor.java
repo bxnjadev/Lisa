@@ -10,6 +10,8 @@ import net.ibxnjadev.vmesseger.universal.Interceptor;
 
 public class DeleteServerInterceptor implements Interceptor<ActionMessage> {
 
+    private static final String ACTION = "DELETE";
+
     private final CloudService cloudService;
 
     public DeleteServerInterceptor(CloudService cloudService) {
@@ -28,6 +30,6 @@ public class DeleteServerInterceptor implements Interceptor<ActionMessage> {
 
     @Override
     public boolean check(ActionMessage object) {
-        return object.getAction().equals("DELETE");
+        return object.getAction().equals(ACTION);
     }
 }

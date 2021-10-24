@@ -7,10 +7,9 @@ import com.github.dockerjava.api.model.ExposedPort;
 import com.github.dockerjava.api.model.HostConfig;
 import com.github.dockerjava.api.model.Ports;
 import com.github.dockerjava.core.command.AttachContainerResultCallback;
-import net.ibxnjadev.kruby.core.attach.KrubyAttachContainer;
+import net.ibxnjadev.kruby.core.docker.attach.KrubyAttachContainer;
 import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.template.Template;
-import net.ibxnjadev.kruby.helper.io.StreamHelper;
 
 import java.io.InputStream;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package net.ibxnjadev.kruby.core.attach;
+package net.ibxnjadev.kruby.core.docker.attach;
 
 import com.github.dockerjava.api.model.Frame;
 

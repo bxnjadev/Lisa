@@ -8,6 +8,8 @@ import net.ibxnjadev.vmesseger.universal.Interceptor;
 
 public class StopServerInterceptor implements Interceptor<ActionMessage> {
 
+    private static final String ACTION = "STOP";
+
     private final CloudService cloudService;
 
     public StopServerInterceptor(CloudService cloudService) {
@@ -26,6 +28,7 @@ public class StopServerInterceptor implements Interceptor<ActionMessage> {
 
     @Override
     public boolean check(ActionMessage object) {
-        return object.getAction().equals("STOP");
+        return object.getAction().equals(ACTION);
     }
+
 }
