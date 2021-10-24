@@ -1,5 +1,11 @@
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id "application"
+}
+
+application {
+    mainClass = 'net.ibxnjadev.kruby.core.Main'
 }
 
 repositories {
@@ -20,7 +26,7 @@ dependencies {
     implementation 'net.ibxnjadev.vmessenger.redis:redis:0.1.0'
     implementation 'net.ibxnjadev.vmessenger.universal:universal:0.1.0'
     implementation 'org.jline:jline:3.20.0'
-    compileOnly project(":helper")
+    implementation project(":helper")
 }
 
 group = 'net.ibxnjadev.kruby.core'

@@ -6,9 +6,7 @@ import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 public class CoreLocalStorage<V> implements LocalStorage<V> {
 
@@ -76,6 +74,10 @@ public class CoreLocalStorage<V> implements LocalStorage<V> {
     @Override
     public Set<V> values() {
         Set<V> values = new HashSet<>();
+
+        if (directory == null) {
+            return values;
+        }
 
         for (File file : directory.listFiles()) {
             find(FilenameUtils.removeExtension(file.getName())).ifPresent(values::add);
