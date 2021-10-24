@@ -23,21 +23,19 @@ public class CommandLoader implements Loader {
     private final CloudShutdown cloudShutdown;
 
     private final InputExecutor inputExecutor;
-    private final ErrorInput errorInput;
+    private final ErrorInput errorInput = new ErrorInput();
 
     public CommandLoader(AnnotatedCommandTreeBuilder annotatedCommandTreeBuilder,
                          CommandManager commandManager, TemplateService templateService,
                          CloudService cloudService,
                          CloudShutdown cloudShutdown,
-                         InputExecutor inputExecutor,
-                         ErrorInput errorInput) {
+                         InputExecutor inputExecutor) {
         this.annotatedCommandTreeBuilder = annotatedCommandTreeBuilder;
         this.commandManager = commandManager;
         this.templateService = templateService;
         this.cloudService = cloudService;
         this.cloudShutdown = cloudShutdown;
         this.inputExecutor = inputExecutor;
-        this.errorInput = errorInput;
     }
 
     @Override

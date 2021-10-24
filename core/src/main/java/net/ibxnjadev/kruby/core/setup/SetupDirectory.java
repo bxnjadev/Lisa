@@ -6,12 +6,13 @@ public class SetupDirectory implements SetupHandler {
 
     @Override
     public void setup() {
+        createFolders("servers","templates","template-registry", "dockerfiles");
+    }
 
-        createFolder("servers");
-        createFolder("templates");
-        createFolder("templates-registry");
-        createFolder("dockerfiles");
-
+    private void createFolders(String... folders) {
+        for (String folder : folders) {
+            createFolder(folder);
+        }
     }
 
     private void createFolder(String folderName) {

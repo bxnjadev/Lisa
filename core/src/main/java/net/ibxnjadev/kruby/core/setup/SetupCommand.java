@@ -15,6 +15,8 @@ import net.ibxnjadev.kruby.core.cloud.CloudShutdown;
 import net.ibxnjadev.kruby.core.setup.loader.CommandLoader;
 import net.ibxnjadev.kruby.core.setup.loader.Loader;
 import net.ibxnjadev.kruby.core.template.TemplateService;
+import net.ibxnjadev.kruby.helper.input.ErrorInput;
+import net.ibxnjadev.kruby.helper.input.InputExecutor;
 import org.jline.reader.LineReader;
 
 public class SetupCommand implements SetupHandler {
@@ -25,15 +27,18 @@ public class SetupCommand implements SetupHandler {
     private final TemplateService templateService;
     private final CloudService cloudService;
     private final CloudShutdown cloudShutdown;
+    private final InputExecutor inputExecutor;
 
     public SetupCommand(LineReader lineReader,
                         TemplateService templateService,
                         CloudService cloudService,
-                        CloudShutdown cloudShutdown) {
+                        CloudShutdown cloudShutdown,
+                        InputExecutor inputExecutor) {
         this.lineReader = lineReader;
         this.templateService = templateService;
         this.cloudService = cloudService;
         this.cloudShutdown = cloudShutdown;
+        this.inputExecutor = inputExecutor;
     }
 
     @Override
@@ -46,7 +51,8 @@ public class SetupCommand implements SetupHandler {
         CommandManager commandManager = new SimpleCommandManager();
         Namespace namespace = new NamespaceImpl();
 
-        Loader loader = new CommandLoader(annotatedCommandTreeBuilder, commandManager, templateService, cloudService, cloudShutdown);
+        Loader loader = new CommandLoader(annotatedCommandTreeBuilder, commandManager, templateService, cloudService, cloudShutdown,
+                inputExecutor);
         loader.load();
 
         while (true) {

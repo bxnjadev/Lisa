@@ -7,10 +7,10 @@ import net.ibxnjadev.vmesseger.universal.Messenger;
 
 public class CoreBackendConnectionHandler implements BackendConnectionHandler {
 
+    private static final String CHANNEL_AUTHORIZATION = "AUTHORIZATION";
+
     private final CloudConfiguration cloudConfiguration;
     private final Messenger messenger;
-
-    private static final String CHANNEL_AUTHORIZATION = "AUTHORIZATION";
 
     public CoreBackendConnectionHandler(
             CloudConfiguration cloudConfiguration,

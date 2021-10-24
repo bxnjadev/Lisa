@@ -7,19 +7,19 @@ public class BackendAuthorizationResponseMessage {
     private final boolean connected;
     private final String messageError;
 
-    private final String token;
+    private final String key;
 
     @ConstructorProperties(
             {"connected",
             "message_error",
-            "token"}
+            "key"}
     )
     public BackendAuthorizationResponseMessage(boolean connected,
                                                String messageError,
-                                               String token) {
+                                               String key) {
         this.connected = connected;
         this.messageError = messageError;
-        this.token = token;
+        this.key = key;
     }
 
     public boolean isConnected() {
@@ -30,8 +30,8 @@ public class BackendAuthorizationResponseMessage {
         return messageError;
     }
 
-    public String getToken() {
-        return token;
+    public String getKey() {
+        return key;
     }
 
 }

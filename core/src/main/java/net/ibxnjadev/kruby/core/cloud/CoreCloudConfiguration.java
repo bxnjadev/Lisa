@@ -15,7 +15,11 @@ public class CoreCloudConfiguration implements CloudConfiguration {
     private int memory;
     private RemoteCloudConfiguration remoteCloudConfiguration;
 
-    @ConstructorProperties({"id", "name", "address", "memory", "remote_configuration"})
+    @ConstructorProperties({"id",
+            "name",
+            "address",
+            "memory",
+            "remote_configuration"})
     public CoreCloudConfiguration(String id,
                                   String name,
                                   String address,

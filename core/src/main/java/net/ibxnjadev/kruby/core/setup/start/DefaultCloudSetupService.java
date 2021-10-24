@@ -107,7 +107,7 @@ public class DefaultCloudSetupService implements CloudSetupService {
         CloudShutdown cloudShutdown = new CoreCloudShutdown(cloudService, redisClientProvider, dockerClientProvider);
 
         setups(
-                new SetupCommand(terminalProvider.getLineReader(), templateService, cloudService, cloudShutdown)
+                new SetupCommand(terminalProvider.getLineReader(), templateService, cloudService, cloudShutdown, inputExecutor)
         );
 
         System.out.println("Cloud loaded and running");

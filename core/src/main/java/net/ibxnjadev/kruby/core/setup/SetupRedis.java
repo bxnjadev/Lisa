@@ -1,6 +1,6 @@
 package net.ibxnjadev.kruby.core.setup;
 
-import net.ibxnjadev.kruby.core.util.StreamHelper;
+import net.ibxnjadev.kruby.helper.io.StreamHelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
