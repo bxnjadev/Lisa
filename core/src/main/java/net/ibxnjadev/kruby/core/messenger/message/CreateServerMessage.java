@@ -9,6 +9,7 @@ public class CreateServerMessage {
     private final int port;
     private final String[] variables;
 
+
     public CreateServerMessage(String templateName,
                                String serverName,
                                String commandStart,
