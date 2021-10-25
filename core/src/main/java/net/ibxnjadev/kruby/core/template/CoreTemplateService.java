@@ -22,7 +22,7 @@ public class CoreTemplateService implements TemplateService {
     public void createTemplate(Template template, String dockerfileNameDirectory) {
 
         TemplateUtil.setupTemplateEnvironment(template, dockerfileNameDirectory);
-        String id = dockerTemplateHandler.createTemplateImage(template);
+        String id = dockerTemplateHandler.createTemplateImage(template, dockerfileNameDirectory);
         template.setImageId(id);
         registerTemplate(template);
 

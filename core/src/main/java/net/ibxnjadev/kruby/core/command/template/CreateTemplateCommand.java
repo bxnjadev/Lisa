@@ -29,14 +29,14 @@ public class CreateTemplateCommand implements CommandClass {
 
     @Command(names = "")
     public void main() {
-
+        
         String name = inputExecutor.get(String.class, errorInput, "Enter Template Name");
         String commandStart = inputExecutor.get(String.class, errorInput, "Enter Command Start");
         String directory = inputExecutor.get(String.class, errorInput, "Enter Template Directory");
         int serversPerDefect = inputExecutor.get(Integer.class, errorInput, "Enter Server per Defect");
         String dockerFileDirectory = inputExecutor.get(String.class, errorInput, "Enter dockerfile directory");
 
-        File fileDirectory = new File("templates-registry/ " + directory);
+        File fileDirectory = new File("template-registry/" + directory);
 
         if (!fileDirectory.exists()) {
             System.out.println("The directory no exists");

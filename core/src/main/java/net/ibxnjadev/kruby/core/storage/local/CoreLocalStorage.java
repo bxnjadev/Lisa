@@ -75,7 +75,7 @@ public class CoreLocalStorage<V> implements LocalStorage<V> {
     public Set<V> values() {
         Set<V> values = new HashSet<>();
 
-        if (directory == null) {
+        if (directory == null || directory.listFiles() == null) {
             return values;
         }
 

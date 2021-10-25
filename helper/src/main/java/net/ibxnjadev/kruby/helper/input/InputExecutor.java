@@ -19,7 +19,8 @@ public class InputExecutor {
 
     public <T> void execute(Class<T> clazz, Consumer<T> consumer, Executor executorIfThrow, String prefix) {
 
-        String line = prefix != null ? lineReader.readLine(prefix) : lineReader.readLine();
+        String line = prefix != null ? lineReader.readLine(prefix + " ") : lineReader.readLine();
+        line = line.trim();
 
         try {
             consumer.accept(clazz.cast(create(clazz, line)));
@@ -34,7 +35,8 @@ public class InputExecutor {
     }
 
     public <T> T get(Class<T> clazz, Executor executorIfThrow, String prefix){
-        String line = prefix != null ? lineReader.readLine(prefix) : lineReader.readLine();
+        String line = prefix != null ? lineReader.readLine(prefix + " ") : lineReader.readLine();
+        line = line.trim();
 
         try {
             return clazz.cast(create(clazz, line));
