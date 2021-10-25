@@ -8,6 +8,8 @@ application {
     mainClass = 'net.ibxnjadev.kruby.core.Main'
 }
 
+archivesBaseName = 'Kruby'
+
 repositories {
     mavenCentral()
     mavenLocal()

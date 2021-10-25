@@ -11,12 +11,12 @@ public class TemplateUtil {
         File directory = new File("dockerfiles/" + dockerfileNameDirectory);
 
         System.out.println(directory);
-        File dockerfile = new File(directory, "docker/java_8_template/Dockerfile");
-        File entrypoint = new File(directory, "docker/java_8_template/entrypoint.sh");
+        File dockerfile = new File(directory, "Dockerfile");
+        File entrypoint = new File(directory, "entrypoint.sh");
 
         File directoryTemplate = template.getDirectory();
-        File dockerfileTemplate = new File(directoryTemplate, "docker/java_8_template/Dockerfile");
-        File entrypointTemplate = new File(directoryTemplate, "docker/java_8_template/entrypoint.sh");
+        File dockerfileTemplate = new File(directoryTemplate, "Dockerfile");
+        File entrypointTemplate = new File(directoryTemplate, "entrypoint.sh");
 
         try {
 
