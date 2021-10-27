@@ -9,10 +9,12 @@ import net.ibxnjadev.kruby.helper.io.StreamHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.function.Consumer;
 
 public class CoreCloudService implements CloudService {
 
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newCachedThreadPool();
     private static final String SEPARATOR = "_";
 
     private final Map<String, Server> servers = new HashMap<>();
@@ -27,33 +29,41 @@ public class CoreCloudService implements CloudService {
     }
 
     @Override
-    public Server createServer(Template template, int port, String name, String commandStart, boolean isStatic, String[] variables) {
-
-        String id = UtilId.randomId();
+    public Server createServer(Template template, int port, String name, String commandStart, boolean isStatic, String[] variables) throws ExecutionException, InterruptedException {
 
         if (port < 0) {
             port = cloudPortProvider.providePort();
         }
 
+        String id = UtilId.randomId();
+
         if (name == null) {
             name = template.getName() + SEPARATOR + id;
         }
 
-        String containerId = dockerCloudHandler
-                .createContainer(template, port, name, commandStart, variables);
+        int finalPort = port;
+        String finalName = name;
 
-        Server server = new CoreServer(id,
-                containerId,
-                template.getName(),
-                template.getId(),
-                name,
-                port,
-                isStatic);
+        Future<Server> future = EXECUTOR_SERVICE.submit(() -> {
 
-        loadServer(server);
+            String containerId = dockerCloudHandler
+                    .createContainer(template, finalPort, finalName, commandStart, variables);
 
-        System.out.println("Server created: " + server.getId());
-        return server;
+            Server server = new CoreServer(id,
+                    containerId,
+                    template.getName(),
+                    template.getId(),
+                    finalName,
+                    finalPort,
+                    isStatic);
+
+            loadServer(server);
+
+            return server;
+        });
+
+        System.out.println("Server created: " + future.get().getId());
+        return future.get();
     }
 
     @Override

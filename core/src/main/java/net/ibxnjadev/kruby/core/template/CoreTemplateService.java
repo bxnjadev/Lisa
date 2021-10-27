@@ -4,8 +4,12 @@ import net.ibxnjadev.kruby.core.storage.local.LocalStorage;
 import net.ibxnjadev.kruby.core.storage.local.LocalStorageProvider;
 
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class CoreTemplateService implements TemplateService {
+
+    private static final ExecutorService EXECUTOR_SERVICE = Executors.newCachedThreadPool();
 
     private final Map<String, Template> templates = new HashMap<>();
     private final Map<String, String> templateIds = new HashMap<>();
@@ -20,14 +24,15 @@ public class CoreTemplateService implements TemplateService {
 
     @Override
     public void createTemplate(Template template, String dockerfileNameDirectory) {
+        EXECUTOR_SERVICE.submit(() -> {
+            TemplateUtil.setupTemplateEnvironment(template, dockerfileNameDirectory);
+            String id = dockerTemplateHandler.createTemplateImage(template);
+            template.setImageId(id);
+            registerTemplate(template);
 
-        TemplateUtil.setupTemplateEnvironment(template, dockerfileNameDirectory);
-        String id = dockerTemplateHandler.createTemplateImage(template, dockerfileNameDirectory);
-        template.setImageId(id);
-        registerTemplate(template);
-
-        templateLocalStorage.add(template.getId(), template);
-        System.out.println(": Created Template " + template.getName());
+            templateLocalStorage.add(template.getId(), template);
+            System.out.println(": Created Template " + template.getName());
+        });
     }
 
     @Override

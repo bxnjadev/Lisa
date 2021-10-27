@@ -10,11 +10,14 @@ import com.github.dockerjava.core.command.AttachContainerResultCallback;
 import net.ibxnjadev.kruby.core.docker.attach.KrubyAttachContainer;
 import net.ibxnjadev.kruby.core.server.Server;
 import net.ibxnjadev.kruby.core.template.Template;
+import net.ibxnjadev.kruby.helper.AsyncHelper;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
@@ -27,7 +30,6 @@ public class DockerCloudHandler {
     }
 
     public String createContainer(Template template, int port, String serverName, String commandStart, String[] variables) {
-
         String[] definitiveVariables = concat(variables, "PORT= " + port, "COMMAND_START=" + commandStart);
 
         CreateContainerResponse container = dockerClient

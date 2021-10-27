@@ -27,10 +27,11 @@ public class DockerTemplateHandler {
      * @return the template id
      */
 
-    public String createTemplateImage(Template template, String templateDirectory) {
+    public String createTemplateImage(Template template) {
 
         File directory = template.getDirectory();
-        File dockerFile = new File(directory, "docker/"+templateDirectory+"/Dockerfile");
+        System.out.println(directory);
+        File dockerFile = new File(directory, "Dockerfile");
 
         return client.buildImageCmd()
                 .withDockerfile(dockerFile)

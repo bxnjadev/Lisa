@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public interface CloudService {
      * @return The created server
      */
 
-    Server createServer(Template template, int port, String name, String commandStart, boolean isStatic, String[] variables);
+    Server createServer(Template template, int port, String name, String commandStart, boolean isStatic, String[] variables) throws ExecutionException, InterruptedException;
 
     /**
      * Create a minecraft server based on a template
